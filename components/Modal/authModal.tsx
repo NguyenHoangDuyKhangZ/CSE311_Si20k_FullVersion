@@ -128,6 +128,7 @@ export default function AuthModal() {
             />
             <p className="text-sm text-gray-500">
               Demo: guest@si20k.com / 123
+              Demo: admin@si20k.com / 123
             </p>
             <button
               type="submit"

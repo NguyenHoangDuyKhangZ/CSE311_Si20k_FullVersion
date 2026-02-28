@@ -42,8 +42,7 @@ export default function Header() {
                 <div className="absolute left-0 mt-0 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                   <button
                     onClick={() => {
-                      openCategoryModal('jackets');
-                      setShowMenu(false);
+                     <NavLink href="all-products"></NavLink>
                     }}
                     className="block w-full text-left px-6 py-3 hover:bg-gray-50 first:rounded-t-xl"
                   >
@@ -92,8 +91,13 @@ export default function Header() {
               {currentUser ? (
                 <div className="relative group">
                   <button className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <span className="px-3 py-1 bg-white/20 rounded-full text-sm flex items-center gap-1"><img src="../images/diamond.png" alt="Points" className="w-4 h-4 mr-1" />{currentUser.points}</span>
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-600 to-pink-500 flex items-center justify-center text-white font-semibold">
-                      {currentUser.name.charAt(0).toUpperCase()}
+                      {currentUser.role === 'admin' ? (
+          <img src="../images/admin.png" alt="admin" className="w-full h-full object-cover" />
+        ) : (
+          <img src="../images/user.png" alt="guest" className="w-full h-full object-cover" />
+        )}
                     </div>
                     <span className="hidden sm:block text-sm font-medium text-gray-700">
                       {currentUser.name}

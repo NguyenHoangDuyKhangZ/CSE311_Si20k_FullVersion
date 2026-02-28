@@ -30,7 +30,7 @@ export default function CategoryModal() {
       onClick={closeCategoryModal}
     >
       <div
-        className="modal-content w-full mx-4 max-h-[85vh] flex flex-col"
+        className="bg-white w-full mx-4 max-h-[85vh] flex flex-col "
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

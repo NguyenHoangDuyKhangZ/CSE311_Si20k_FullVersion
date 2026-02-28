@@ -44,6 +44,10 @@ interface StoreContextType {
   selectedProduct: Product | null;
   openProductDetail: (product: Product) => void;
   closeProductDetail: () => void;
+
+  // Dark Mode
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -59,6 +63,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [productDetailModalOpen, setProductDetailModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -91,6 +96,20 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       console.error('Error loading voucher:', e);
       localStorage.removeItem('si20k_voucher');
     }
+
+    // Load dark mode preference
+    try {
+      const savedDarkMode = localStorage.getItem('si20k_darkMode');
+      if (savedDarkMode) {
+        const isDark = savedDarkMode === 'true';
+        setDarkMode(isDark);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        }
+      }
+    } catch (e) {
+      console.error('Error loading dark mode:', e);
+    }
   }, []);
 
   // Save cart on change
@@ -111,19 +130,19 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     setCurrentUser(user);
     localStorage.setItem('si20k_currentUser', JSON.stringify(user));
     setAuthModalOpen(false);
-    showNotification(`Xin chào ${user.name}!`, 'success');
+    showNotification(`Welcome ${user.name}!`, 'success');
   };
 
   const logout = () => {
     setCurrentUser(null);
     localStorage.removeItem('si20k_currentUser');
-    showNotification('Đã đăng xuất.', 'info');
+    showNotification('Logged out successfully.', 'info');
   };
 
   const updateUserProfile = (user: User) => {
     setCurrentUser(user);
     localStorage.setItem('si20k_currentUser', JSON.stringify(user));
-    showNotification('Cập nhật hồ sơ thành công!', 'success');
+    showNotification('Profile updated successfully!', 'success');
   };
 
   // Cart operations
@@ -137,12 +156,12 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       }
       return [...prev, { ...product, quantity }];
     });
-    showNotification(`Đã thêm ${product.name} vào giỏ!`, 'success');
+    showNotification(`Added ${product.name} to cart!`, 'success');
   };
 
   const removeFromCart = (id: number) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
-    showNotification('Đã xóa khỏi giỏ hàng', 'info');
+    showNotification('Removed from cart', 'info');
   };
 
   const updateQuantity = (id: number, newQuantity: number) => {
@@ -174,24 +193,24 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
     const voucher = allVouchers.find((v) => v.code === code);
     if (!voucher) {
-      showNotification('Mã giảm giá không tồn tại!', 'error');
+      showNotification('Voucher code does not exist!', 'error');
       return;
     }
 
     if (voucher.minOrder && cartTotal < voucher.minOrder) {
-      showNotification(`Mã này áp dụng cho đơn hàng từ ${voucher.minOrder?.toLocaleString('vi-VN')} VND`, 'warning');
+      showNotification(`This code applies to orders from ${voucher.minOrder?.toLocaleString('vi-VN')} VND`, 'warning');
       return;
     }
 
     setSelectedVoucher(voucher);
     localStorage.setItem('si20k_voucher', JSON.stringify(voucher));
-    showNotification(`Áp dụng mã: ${code}`, 'success');
+    showNotification(`Applied code: ${code}`, 'success');
   };
 
   const removeVoucher = () => {
     setSelectedVoucher(null);
     localStorage.removeItem('si20k_voucher');
-    showNotification('Đã xóa mã giảm giá', 'info');
+    showNotification('Voucher removed', 'info');
   };
 
   const calculateDiscount = (total: number): number => {
@@ -202,6 +221,22 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       return selectedVoucher.maxDiscount ? Math.min(discount, selectedVoucher.maxDiscount) : discount;
     }
     return selectedVoucher.discount;
+  };
+
+  // Dark Mode
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => {
+      const newMode = !prev;
+      localStorage.setItem('si20k_darkMode', String(newMode));
+      
+      if (newMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      
+      return newMode;
+    });
   };
 
   // Modals
@@ -226,7 +261,8 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       cart, addToCart, removeFromCart, updateQuantity, clearCart, cartTotal, cartModalOpen, setCartModalOpen,
       selectedVoucher, applyVoucher, removeVoucher, calculateDiscount,
       categoryModalOpen, selectedCategory, openCategoryModal, closeCategoryModal,
-      productDetailModalOpen, selectedProduct, openProductDetail, closeProductDetail
+      productDetailModalOpen, selectedProduct, openProductDetail, closeProductDetail,
+      darkMode, toggleDarkMode
     }}>
       {children}
     </StoreContext.Provider>
