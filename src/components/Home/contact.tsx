@@ -1,6 +1,6 @@
 'use client';
 
-import { useStore } from '@/context/store_context';
+import { useStore } from "@/src/context/store_context";
 
 export default function Contact() {
   const { showNotification } = useStore();
@@ -14,7 +14,7 @@ export default function Contact() {
   return (
     <section className="section bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20" id="contact">
       <div className="container mx-auto px-4 max-w-7xl">
-        
+
         {/* Header */}
         <div className="text-center mb-16">
           <h3 className="text-2xl font-bold text-pink-500 mb-2">Contact</h3>
@@ -51,7 +51,7 @@ export default function Contact() {
 
         {/* Map & Form Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
+
           {/* Map (Iframe) */}
           <div className="w-full h-[400px] rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
             <iframe
@@ -67,33 +67,33 @@ export default function Contact() {
           <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-slate-700 shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input 
-                  type="text" 
-                  placeholder="Your name" 
-                  required 
-                  className="w-full p-4 rounded-xl bg-slate-900/70 border border-slate-600 text-white placeholder-slate-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 outline-none transition-all" 
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  required
+                  className="w-full p-4 rounded-xl bg-slate-900/70 border border-slate-600 text-white placeholder-slate-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 outline-none transition-all"
                 />
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
-                  required 
-                  className="w-full p-4 rounded-xl bg-slate-900/70 border border-slate-600 text-white placeholder-slate-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 outline-none transition-all" 
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  required
+                  className="w-full p-4 rounded-xl bg-slate-900/70 border border-slate-600 text-white placeholder-slate-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 outline-none transition-all"
                 />
               </div>
-              <input 
-                type="text" 
-                placeholder="Subject" 
-                className="w-full p-4 rounded-xl bg-slate-900/70 border border-slate-600 text-white placeholder-slate-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 outline-none transition-all" 
+              <input
+                type="text"
+                placeholder="Subject"
+                className="w-full p-4 rounded-xl bg-slate-900/70 border border-slate-600 text-white placeholder-slate-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 outline-none transition-all"
               />
-              <textarea 
-                placeholder="Message" 
-                required 
-                rows={4} 
+              <textarea
+                placeholder="Message"
+                required
+                rows={4}
                 className="w-full p-4 rounded-xl bg-slate-900/70 border border-slate-600 text-white placeholder-slate-400 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 outline-none transition-all resize-none"
               ></textarea>
-              
-              <button 
-                type="submit" 
+
+              <button
+                type="submit"
                 className="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-pink-500/30 hover:shadow-xl hover:shadow-pink-500/50 hover:-translate-y-1 transition-all duration-300"
               >
                 Send Message

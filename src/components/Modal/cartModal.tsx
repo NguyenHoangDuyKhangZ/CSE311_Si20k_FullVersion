@@ -1,6 +1,6 @@
 'use client';
 
-import { useStore } from '@/context/store_context';
+import { useStore } from '@/src/context/store_context';
 import Link from 'next/link';
 import { useState } from 'react';
 

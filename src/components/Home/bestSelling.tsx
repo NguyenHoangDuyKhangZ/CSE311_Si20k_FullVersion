@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useStore } from '@/context/store_context';
+import { useStore } from '@/src/context/store_context';
 
 // 1. Giả lập dữ liệu Best Selling (Lấy từ project.js cũ của bạn)
 const bestSellingProducts = [
@@ -25,9 +25,9 @@ export default function BestSelling() {
       else if (window.innerWidth < 1024) setItemsPerSlide(3); // Tablet hiện 3
       else setItemsPerSlide(4); // Laptop hiện 4
     };
-    
+
     // Gọi ngay khi mở web
-    handleResize(); 
+    handleResize();
     // Lắng nghe khi user co giãn cửa sổ
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -35,7 +35,7 @@ export default function BestSelling() {
 
   // Logic chuyển Slide (Next / Prev)
   const totalSlides = Math.ceil(bestSellingProducts.length / itemsPerSlide);
-  
+
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % totalSlides); // Quay vòng về 0 nếu hết
   };
@@ -56,12 +56,12 @@ export default function BestSelling() {
   return (
     <section className="py-20 bg-gray-50" id="best-selling">
       <div className="container mx-auto px-4">
-        
+
         {/* CONTAINER MÀU CẦU VỒNG (RGB BORDER) */}
         {/* Thay thế class .rgb-border-container cũ bằng Tailwind arbitrary values */}
         <div className="relative p-[3px] rounded-3xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 shadow-2xl">
           <div className="bg-white rounded-[21px] p-8 min-h-[500px]">
-            
+
             {/* Title */}
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center gap-3">
               <i className="fas fa-star text-yellow-400 text-2xl animate-spin-slow"></i>
@@ -71,9 +71,9 @@ export default function BestSelling() {
 
             {/* CAROUSEL BODY */}
             <div className="relative">
-              
+
               {/* Nút Prev */}
-              <button 
+              <button
                 onClick={prevSlide}
                 className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
               >
@@ -83,59 +83,59 @@ export default function BestSelling() {
               {/* Danh sách sản phẩm (Grid) */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
                 {currentProducts.map((product) => {
-                   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-                   
-                   return (
-                     <div key={product.id} className="group bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden flex flex-col h-full">
-                        
-                        {/* Ảnh & Badge */}
-                        <div className="relative h-64 overflow-hidden">
-                           <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                           
-                           {/* Badge Sold */}
-                           <span className="absolute top-2 left-0 bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded-r shadow-md">
-                             Sold {product.sold}
-                           </span>
+                  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 
-                           {/* Badge Discount */}
-                           {discount > 0 && (
-                             <span className="absolute top-2 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-l shadow-md">
-                               -{discount}%
-                             </span>
-                           )}
+                  return (
+                    <div key={product.id} className="group bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden flex flex-col h-full">
+
+                      {/* Ảnh & Badge */}
+                      <div className="relative h-64 overflow-hidden">
+                        <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+
+                        {/* Badge Sold */}
+                        <span className="absolute top-2 left-0 bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded-r shadow-md">
+                          Sold {product.sold}
+                        </span>
+
+                        {/* Badge Discount */}
+                        {discount > 0 && (
+                          <span className="absolute top-2 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-l shadow-md">
+                            -{discount}%
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Nội dung */}
+                      <div className="p-4 flex flex-col flex-grow">
+                        <h3 className="font-bold text-gray-800 line-clamp-1 mb-1" title={product.name}>{product.name}</h3>
+                        <p className="text-sm text-gray-500 line-clamp-2 mb-3 flex-grow">{product.description}</p>
+
+                        <div className="mt-auto">
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="text-red-500 font-bold text-lg">{product.price.toLocaleString()}₫</span>
+                            <del className="text-gray-400 text-sm">{product.originalPrice.toLocaleString()}₫</del>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => addToCart(product)}
+                              className="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-2 rounded-lg font-semibold hover:shadow-lg hover:opacity-90 transition-all text-sm"
+                            >
+                              <i className="fas fa-cart-plus mr-1"></i> Add
+                            </button>
+                            <button className="px-3 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all text-sm">
+                              Details
+                            </button>
+                          </div>
                         </div>
-
-                        {/* Nội dung */}
-                        <div className="p-4 flex flex-col flex-grow">
-                           <h3 className="font-bold text-gray-800 line-clamp-1 mb-1" title={product.name}>{product.name}</h3>
-                           <p className="text-sm text-gray-500 line-clamp-2 mb-3 flex-grow">{product.description}</p>
-                           
-                           <div className="mt-auto">
-                              <div className="flex justify-between items-center mb-3">
-                                 <span className="text-red-500 font-bold text-lg">{product.price.toLocaleString()}₫</span>
-                                 <del className="text-gray-400 text-sm">{product.originalPrice.toLocaleString()}₫</del>
-                              </div>
-
-                              <div className="flex gap-2">
-                                <button 
-                                  onClick={() => addToCart(product)}
-                                  className="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-2 rounded-lg font-semibold hover:shadow-lg hover:opacity-90 transition-all text-sm"
-                                >
-                                  <i className="fas fa-cart-plus mr-1"></i> Add
-                                </button>
-                                <button className="px-3 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all text-sm">
-                                  Details
-                                </button>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                   )
+                      </div>
+                    </div>
+                  )
                 })}
               </div>
 
               {/* Nút Next */}
-              <button 
+              <button
                 onClick={nextSlide}
                 className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-gradient-to-r from-secondary to-primary text-white shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
               >
@@ -149,9 +149,8 @@ export default function BestSelling() {
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    currentIndex === idx ? 'bg-primary w-8' : 'bg-gray-300'
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all ${currentIndex === idx ? 'bg-primary w-8' : 'bg-gray-300'
+                    }`}
                 />
               ))}
             </div>

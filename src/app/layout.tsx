@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import "./style.css";
-import { StoreProvider } from '@/context/store_context';
-import Notification from '@/components/Home/notification';
-import Header from '@/components/Home/header';
-import CategoryModal from '@/components/Modal/categoryModal';
-import ProductDetailModal from '@/components/Modal/productDetailModal';
-import AuthModal from '@/components/Modal/authModal';
-import CartModal from '@/components/Modal/cartModal';
-import FloatingCart from '@/components/Home/floatingCart';
+import { StoreProvider } from '../context/store_context';
+import Header from '../components/Home/header';
+import CategoryModal from '../components/Modal/categoryModal';
+import ProductDetailModal from '../components/Modal/productDetailModal';
+import AuthModal from '../components/Modal/authModal';
+import CartModal from '../components/Modal/cartModal';
+import FloatingCart from '../components/Home/floatingCart';
+import Notification from '../components/Home/notification';
 
 export const metadata: Metadata = {
   title: 'Si20k_Store',
@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link 
-          rel="stylesheet" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -49,9 +49,9 @@ export default function RootLayout({
           <AuthModal />
           <CartModal />
           <FloatingCart />
-          
-          <main className="min-h-screen pt-4"> 
-             {children}
+
+          <main className="min-h-screen pt-4">
+            {children}
           </main>
         </StoreProvider>
       </body>

@@ -1,7 +1,7 @@
 'use client';
 
-import { useStore } from '@/context/store_context';
-import { products } from '@/constants/products';
+import { products } from "@/src/constants/products";
+import { useStore } from "@/src/context/store_context";
 
 export default function SuperSale() {
   const { openProductDetail, addToCart } = useStore();
@@ -14,9 +14,9 @@ export default function SuperSale() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-12">
-          
+
           <h2 className="section-title flex items-center justify-center gap-2">
-            <img src="../images/fire.gif" alt="Fire" className="w-10 h-10 rounded-xl shadow-lg" /> Super Sale Items 
+            <img src="../images/fire.gif" alt="Fire" className="w-10 h-10 rounded-xl shadow-lg" /> Super Sale Items
             <img src="../images/fire.gif" alt="Fire" className="w-10 h-10 rounded-xl shadow-lg" />
           </h2>
           <p className="text-gray-600 mt-2">Up to 50% discount on selected products</p>
@@ -28,10 +28,10 @@ export default function SuperSale() {
             const discount =
               product.originalPrice && product.price < product.originalPrice
                 ? Math.round(
-                    ((product.originalPrice - product.price) /
-                      product.originalPrice) *
-                      100
-                  )
+                  ((product.originalPrice - product.price) /
+                    product.originalPrice) *
+                  100
+                )
                 : 0;
 
             return (

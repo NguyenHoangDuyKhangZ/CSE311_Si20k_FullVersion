@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useStore } from '@/context/store_context';
+import { useStore } from "@/src/context/store_context";
 import Link from 'next/link';
 
 export default function PaymentPage() {

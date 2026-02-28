@@ -1,7 +1,7 @@
 'use client';
 
+import { useStore } from '@/src/context/store_context';
 import { useState } from 'react';
-import { useStore } from '@/context/store_context';
 
 export default function Hero() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,7 +32,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-        
+
 
         {/* Main Heading */}
         <h1 className="text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
@@ -94,6 +94,6 @@ export default function Hero() {
           </button>
         </div>
       </div>
-        </section>
+    </section>
   );
 }

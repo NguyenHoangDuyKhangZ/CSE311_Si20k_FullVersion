@@ -1,7 +1,7 @@
 'use client';
 
+import { useStore } from '@/src/context/store_context';
 import { useState } from 'react';
-import { useStore } from '@/context/store_context';
 
 export default function AuthModal() {
   const { authModalOpen, setAuthModalOpen, login, showNotification } = useStore();
@@ -12,7 +12,7 @@ export default function AuthModal() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.email || !formData.password) {
       showNotification('Please enter email and password', 'error');
       return;
@@ -47,7 +47,7 @@ export default function AuthModal() {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.password) {
       showNotification('Please fill in all required information', 'error');
       return;
@@ -86,21 +86,19 @@ export default function AuthModal() {
         {/* Tabs */}
         <div className="flex border-b border-gray-200 mb-6 mt-4">
           <button
-            className={`flex-1 pb-3 text-lg font-bold transition-all ${
-              activeTab === 'login'
+            className={`flex-1 pb-3 text-lg font-bold transition-all ${activeTab === 'login'
                 ? 'text-indigo-600 border-b-2 border-indigo-600'
                 : 'text-gray-400'
-            }`}
+              }`}
             onClick={() => setActiveTab('login')}
           >
             <i className="fas fa-sign-in-alt mr-2"></i>Login
           </button>
           <button
-            className={`flex-1 pb-3 text-lg font-bold transition-all ${
-              activeTab === 'register'
+            className={`flex-1 pb-3 text-lg font-bold transition-all ${activeTab === 'register'
                 ? 'text-indigo-600 border-b-2 border-indigo-600'
                 : 'text-gray-400'
-            }`}
+              }`}
             onClick={() => setActiveTab('register')}
           >
             <i className="fas fa-user-plus mr-2"></i>Register

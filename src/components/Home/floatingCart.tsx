@@ -1,6 +1,7 @@
 'use client';
 
-import { useStore } from '@/context/store_context';
+import { useStore } from "@/src/context/store_context";
+
 
 export default function FloatingCart() {
   const { cart, setCartModalOpen } = useStore();
@@ -10,7 +11,7 @@ export default function FloatingCart() {
   if (totalItems === 0) return null;
 
   return (
-    <button 
+    <button
       onClick={() => setCartModalOpen(true)}
       className="fixed bottom-8 right-8 z-40 bg-gradient-to-r from-accent to-red-600 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 hover:scale-110 transition-transform animate-bounce-slow"
     >

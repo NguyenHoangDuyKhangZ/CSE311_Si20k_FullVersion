@@ -1,7 +1,7 @@
 'use client';
 
+import { useStore } from '@/src/context/store_context';
 import { useEffect } from 'react';
-import { useStore } from '@/context/store_context';
 
 export default function Notification() {
   const { notification, setNotification } = useStore();

@@ -1,6 +1,7 @@
 'use client';
 
-import type { User } from '@/types/index';
+import { User } from "@/src/types";
+
 
 interface ProfileStatsProps {
   currentUser: User;
@@ -9,26 +10,26 @@ interface ProfileStatsProps {
 export default function ProfileStats({ currentUser }: ProfileStatsProps) {
   const isAdmin = currentUser.role === 'admin';
 
-  const stats = isAdmin 
+  const stats = isAdmin
     ? [
-        { label: 'Total Revenue', value: '100,000,000₫', icon: 'fa-money-bill-wave', color: 'from-green-400 to-green-600' },
-        { label: 'Products Sold', value: '500', icon: 'fa-box-open', color: 'from-blue-400 to-blue-600' },
-        { label: 'Remaining Stock', value: '1,500', icon: 'fa-warehouse', color: 'from-purple-400 to-purple-600' },
-        { label: 'Active Vouchers', value: '200', icon: 'fa-ticket-alt', color: 'from-yellow-400 to-yellow-600' },
-      ]
+      { label: 'Total Revenue', value: '100,000,000₫', icon: 'fa-money-bill-wave', color: 'from-green-400 to-green-600' },
+      { label: 'Products Sold', value: '500', icon: 'fa-box-open', color: 'from-blue-400 to-blue-600' },
+      { label: 'Remaining Stock', value: '1,500', icon: 'fa-warehouse', color: 'from-purple-400 to-purple-600' },
+      { label: 'Active Vouchers', value: '200', icon: 'fa-ticket-alt', color: 'from-yellow-400 to-yellow-600' },
+    ]
     : [
-        { label: 'Total Spending', value: '5,000,000₫', icon: 'fa-wallet', color: 'from-blue-400 to-blue-600' },
-        { label: 'Savings', value: '1,200,000₫', icon: 'fa-piggy-bank', color: 'from-green-400 to-green-600' },
-        { label: 'My Vouchers', value: '5', icon: 'fa-gift', color: 'from-pink-400 to-pink-600' },
-        { label: 'Orders', value: '12', icon: 'fa-shopping-bag', color: 'from-orange-400 to-orange-600' },
-      ];
+      { label: 'Total Spending', value: '5,000,000₫', icon: 'fa-wallet', color: 'from-blue-400 to-blue-600' },
+      { label: 'Savings', value: '1,200,000₫', icon: 'fa-piggy-bank', color: 'from-green-400 to-green-600' },
+      { label: 'My Vouchers', value: '5', icon: 'fa-gift', color: 'from-pink-400 to-pink-600' },
+      { label: 'Orders', value: '12', icon: 'fa-shopping-bag', color: 'from-orange-400 to-orange-600' },
+    ];
 
   return (
     <div className="mb-10">
       <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
         <i className="fas fa-chart-line text-indigo-600"></i> Activity Statistics
       </h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
           <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all hover:-translate-y-1 group">

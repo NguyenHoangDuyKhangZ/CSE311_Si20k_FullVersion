@@ -1,6 +1,7 @@
 'use client';
 
-import { useStore } from '@/context/store_context';
+import { useStore } from "@/src/context/store_context";
+
 
 export default function ProductDetailModal() {
   const {
@@ -15,10 +16,10 @@ export default function ProductDetailModal() {
   const discount =
     selectedProduct.originalPrice && selectedProduct.price < selectedProduct.originalPrice
       ? Math.round(
-          ((selectedProduct.originalPrice - selectedProduct.price) /
-            selectedProduct.originalPrice) *
-            100
-        )
+        ((selectedProduct.originalPrice - selectedProduct.price) /
+          selectedProduct.originalPrice) *
+        100
+      )
       : 0;
 
   return (
@@ -58,8 +59,8 @@ export default function ProductDetailModal() {
                   {selectedProduct.category === 'jackets'
                     ? 'Jackets'
                     : selectedProduct.category === 'pants'
-                    ? 'Pants'
-                    : 'Shirts'}
+                      ? 'Pants'
+                      : 'Shirts'}
                 </span>
                 {selectedProduct.stock && selectedProduct.stock > 0 && (
                   <span className="badge badge-success">

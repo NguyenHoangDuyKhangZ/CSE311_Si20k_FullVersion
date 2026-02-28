@@ -1,7 +1,7 @@
 'use client';
 
+import { useStore } from '@/src/context/store_context';
 import Link from 'next/link';
-import { useStore } from '@/context/store_context';
 import { useState } from 'react';
 
 export default function Header() {
@@ -42,7 +42,7 @@ export default function Header() {
                 <div className="absolute left-0 mt-0 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                   <button
                     onClick={() => {
-                     <NavLink href="all-products"></NavLink>
+                      <NavLink href="all-products"></NavLink>
                     }}
                     className="block w-full text-left px-6 py-3 hover:bg-gray-50 first:rounded-t-xl"
                   >
@@ -94,10 +94,10 @@ export default function Header() {
                     <span className="px-3 py-1 bg-white/20 rounded-full text-sm flex items-center gap-1"><img src="../images/diamond.png" alt="Points" className="w-4 h-4 mr-1" />{currentUser.points}</span>
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-600 to-pink-500 flex items-center justify-center text-white font-semibold">
                       {currentUser.role === 'admin' ? (
-          <img src="../images/admin.png" alt="admin" className="w-full h-full object-cover" />
-        ) : (
-          <img src="../images/user.png" alt="guest" className="w-full h-full object-cover" />
-        )}
+                        <img src="../images/admin.png" alt="admin" className="w-full h-full object-cover" />
+                      ) : (
+                        <img src="../images/user.png" alt="guest" className="w-full h-full object-cover" />
+                      )}
                     </div>
                     <span className="hidden sm:block text-sm font-medium text-gray-700">
                       {currentUser.name}
@@ -140,39 +140,39 @@ export default function Header() {
         </div>
       </div>
 
-        <div className="md:hidden bg-white border-b border-gray-100">
-          <nav className="px-4 py-4 flex flex-col gap-2">
-            <MobileNavLink href="/" onClick={() => setShowMenu(false)}>
-              Home
-            </MobileNavLink>
+      <div className="md:hidden bg-white border-b border-gray-100">
+        <nav className="px-4 py-4 flex flex-col gap-2">
+          <MobileNavLink href="/" onClick={() => setShowMenu(false)}>
+            Home
+          </MobileNavLink>
+          <button
+            onClick={() => {
+              openCategoryModal('jackets');
+              setShowMenu(false);
+            }}
+            className="text-left px-4 py-2 text-gray-700 hover:text-indigo-600"
+          >
+            Products
+          </button>
+          <MobileNavLink href="/#about" onClick={() => setShowMenu(false)}>
+            About Us
+          </MobileNavLink>
+          <MobileNavLink href="/#contact" onClick={() => setShowMenu(false)}>
+            Contact
+          </MobileNavLink>
+          {!currentUser && (
             <button
               onClick={() => {
-                openCategoryModal('jackets');
+                setAuthModalOpen(true);
                 setShowMenu(false);
               }}
-              className="text-left px-4 py-2 text-gray-700 hover:text-indigo-600"
+              className="btn btn-primary w-full mt-2"
             >
-              Products
+              Login
             </button>
-            <MobileNavLink href="/#about" onClick={() => setShowMenu(false)}>
-              About Us
-            </MobileNavLink>
-            <MobileNavLink href="/#contact" onClick={() => setShowMenu(false)}>
-              Contact
-            </MobileNavLink>
-            {!currentUser && (
-              <button
-                onClick={() => {
-                  setAuthModalOpen(true);
-                  setShowMenu(false);
-                }}
-                className="btn btn-primary w-full mt-2"
-              >
-                Login
-              </button>
-            )}
-          </nav>
-        </div>
+          )}
+        </nav>
+      </div>
     </header>
   );
 }

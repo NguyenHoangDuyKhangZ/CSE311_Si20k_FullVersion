@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useStore } from '@/context/store_context';
+import { useStore } from '@/src/context/store_context';
 
 export default function AccountSettings() {
   const { showNotification, darkMode, toggleDarkMode } = useStore();
@@ -41,7 +41,7 @@ export default function AccountSettings() {
       </h3>
 
       <div className="space-y-6 max-w-2xl">
-        
+
         {/* Password Management */}
         <div>
           <label className="block text-gray-600 dark:text-gray-300 font-medium mb-2">
@@ -49,8 +49,8 @@ export default function AccountSettings() {
           </label>
           <div className="flex gap-4 items-center flex-wrap">
             {isEditing ? (
-              <input 
-                type={showPassword ? "text" : "password"} 
+              <input
+                type={showPassword ? "text" : "password"}
                 className="flex-1 p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-600 outline-none transition-all min-w-[200px]"
                 placeholder="New password"
                 value={newPassword}
@@ -61,14 +61,13 @@ export default function AccountSettings() {
                 {showPassword ? currentPassword : '••••••••'}
               </div>
             )}
-            
-            <button 
+
+            <button
               onClick={() => setIsEditing(!isEditing)}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all whitespace-nowrap ${
-                isEditing 
-                  ? 'text-red-500 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30' 
+              className={`px-4 py-2 rounded-lg font-semibold transition-all whitespace-nowrap ${isEditing
+                  ? 'text-red-500 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30'
                   : 'text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30'
-              }`}
+                }`}
             >
               <i className={`fas ${isEditing ? 'fa-times' : 'fa-edit'} mr-2`}></i>
               {isEditing ? 'Cancel' : 'Change'}
@@ -77,26 +76,26 @@ export default function AccountSettings() {
 
           {isEditing && (
             <div className="mt-4 space-y-4 animate-fade-in">
-              <input 
-                type={showPassword ? "text" : "password"} 
+              <input
+                type={showPassword ? "text" : "password"}
                 className="w-full p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-600 outline-none transition-all"
                 placeholder="Confirm new password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              
+
               <label className="flex items-center gap-2 cursor-pointer text-gray-600 dark:text-gray-300 text-sm select-none">
-                <input 
-                  type="checkbox" 
-                  checked={showPassword} 
+                <input
+                  type="checkbox"
+                  checked={showPassword}
                   onChange={() => setShowPassword(!showPassword)}
                   className="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-600"
                 />
                 <i className="fas fa-eye text-indigo-600"></i>
                 Show password
               </label>
-              
-              <button 
+
+              <button
                 onClick={handleChangePassword}
                 className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
               >
@@ -118,11 +117,11 @@ export default function AccountSettings() {
               <p className="text-xs text-gray-500 dark:text-gray-400">Adjust the appearance to reduce eye strain</p>
             </div>
           </div>
-          
+
           <label className="relative inline-flex items-center cursor-pointer">
-            <input 
-              type="checkbox" 
-              className="sr-only peer" 
+            <input
+              type="checkbox"
+              className="sr-only peer"
               checked={darkMode}
               onChange={toggleDarkMode}
             />

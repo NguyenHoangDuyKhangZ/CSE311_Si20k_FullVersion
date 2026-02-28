@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useStore } from '@/context/store_context';
-import ProfileStats from '@/components//Profile/profileStats';
-import AccountSettings from '@/components/Profile/accountSettings';
+import { useStore } from '@/src/context/store_context';
+import ProfileStats from '@/src/components/Profile/profileStats';
+import AccountSettings from '@/src/components/Profile/accountSettings';
+
 
 export default function ProfilePage() {
   const { currentUser, logout, showNotification, updateUserProfile } = useStore();
@@ -80,22 +81,20 @@ export default function ProfilePage() {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md space-y-4 transition-colors">
               <button
                 onClick={() => setActiveTab('info')}
-                className={`w-full text-left px-4 py-3 rounded-lg transition-all ${
-                  activeTab === 'info'
+                className={`w-full text-left px-4 py-3 rounded-lg transition-all ${activeTab === 'info'
                     ? 'bg-indigo-600 text-white'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
-                }`}
+                  }`}
               >
                 <i className="fas fa-address-card mr-2"></i>
                 Personal Information
               </button>
               <button
                 onClick={() => setActiveTab('settings')}
-                className={`w-full text-left px-4 py-3 rounded-lg transition-all ${
-                  activeTab === 'settings'
+                className={`w-full text-left px-4 py-3 rounded-lg transition-all ${activeTab === 'settings'
                     ? 'bg-indigo-600 text-white'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
-                }`}
+                  }`}
               >
                 <i className="fas fa-cog mr-2"></i>
                 Settings

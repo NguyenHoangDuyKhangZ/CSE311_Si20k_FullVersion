@@ -1,7 +1,9 @@
 'use client';
 
-import { useStore } from '@/context/store_context';
-import { products } from '@/constants/products';
+import { products } from "@/src/constants/products";
+import { useStore } from "@/src/context/store_context";
+
+
 
 export default function CategoryModal() {
   const {
@@ -81,7 +83,7 @@ export default function CategoryModal() {
                           {Math.round(
                             ((product.originalPrice - product.price) /
                               product.originalPrice) *
-                              100
+                            100
                           )}
                           %
                         </div>
