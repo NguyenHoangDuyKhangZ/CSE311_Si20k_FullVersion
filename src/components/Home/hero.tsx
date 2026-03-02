@@ -33,7 +33,6 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
 
-
         {/* Main Heading */}
         <h1 className="text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
           Affordable Fashion
@@ -47,7 +46,7 @@ export default function Hero() {
 
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto">
-          <div className="relative flex items-center bg-white rounded-full shadow-2xl overflow-hidden border-2 border-purple-100 hover:border-purple-300 transition-all">
+          <div className="relative flex items-center bg-white rounded-full shadow-2xl overflow-hidden border-2 border-purple-100 hover:border-purple-300 focus-within:border-purple-400 transition-all">
             <div className="pl-6 text-gray-400">
               <i className="fas fa-search text-xl"></i>
             </div>
@@ -57,11 +56,12 @@ export default function Hero() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyPress={handleKeyPress}
-              className="flex-1 px-6 py-4 text-lg outline-none text-gray-700 placeholder-gray-400"
+              className="flex-1 px-6 py-4 text-lg text-gray-700 placeholder-gray-400 bg-transparent border-none !outline-none !ring-0 focus:!outline-none focus:!ring-0 focus:!border-transparent focus:!shadow-none shadow-none"
             />
             <button
               onClick={handleSearch}
-              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 flex items-center gap-2"
+              /* Đã thêm focus:outline-none ở đây */
+              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 flex items-center gap-2 focus:outline-none"
             >
               <span>Search</span>
               <i className="fas fa-arrow-right"></i>
@@ -73,21 +73,24 @@ export default function Hero() {
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <button
             onClick={() => openCategoryModal('jackets')}
-            className="px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all border border-purple-100 hover:border-purple-300 flex items-center gap-2 text-gray-700 hover:text-purple-600"
+            /* Đã thêm focus:outline-none ở đây */
+            className="px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all border border-purple-100 hover:border-purple-300 flex items-center gap-2 text-gray-700 hover:text-purple-600 focus:outline-none"
           >
             <i className="fas fa-tshirt"></i>
             <span className="font-medium">Jackets</span>
           </button>
           <button
             onClick={() => openCategoryModal('pants')}
-            className="px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all border border-purple-100 hover:border-purple-300 flex items-center gap-2 text-gray-700 hover:text-purple-600"
+            /* Đã thêm focus:outline-none ở đây */
+            className="px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all border border-purple-100 hover:border-purple-300 flex items-center gap-2 text-gray-700 hover:text-purple-600 focus:outline-none"
           >
             <i className="fas fa-user-tag"></i>
             <span className="font-medium">Pants</span>
           </button>
           <button
             onClick={() => openCategoryModal('shirts')}
-            className="px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all border border-purple-100 hover:border-purple-300 flex items-center gap-2 text-gray-700 hover:text-purple-600"
+            /* Đã thêm focus:outline-none ở đây */
+            className="px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all border border-purple-100 hover:border-purple-300 flex items-center gap-2 text-gray-700 hover:text-purple-600 focus:outline-none"
           >
             <i className="fas fa-shopping-bag"></i>
             <span className="font-medium">Shirts</span>

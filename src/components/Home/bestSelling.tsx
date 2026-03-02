@@ -112,8 +112,8 @@ export default function BestSelling() {
 
                         <div className="mt-auto">
                           <div className="flex justify-between items-center mb-3">
-                            <span className="text-red-500 font-bold text-lg">{product.price.toLocaleString()}₫</span>
-                            <del className="text-gray-400 text-sm">{product.originalPrice.toLocaleString()}₫</del>
+                            <span className="text-red-500 font-bold text-lg">{product.price.toLocaleString('vi-VN')}₫</span>
+                            <del className="text-gray-400 text-sm">{product.originalPrice.toLocaleString('vi-VN')}₫</del>
                           </div>
 
                           <div className="flex gap-2">

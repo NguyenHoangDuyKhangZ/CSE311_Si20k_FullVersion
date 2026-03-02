@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useStore } from '@/src/context/store_context';
 import { Product } from '@/src/types';
-
+import { products } from '@/src/constants/products';
 
 // 2. Dữ liệu mẫu (Copy từ project.js cũ và chuẩn hóa lại)
 const categoriesData: Record<string, Product[]> = {
@@ -34,7 +34,7 @@ const categoryImages: Record<string, string> = {
 };
 
 export default function AllProducts() {
-  const { showNotification, addToCart: addToCartAction } = useStore();
+  const { openProductDetail,showNotification, addToCart: addToCartAction } = useStore();
 
   // State quản lý Tab đang chọn (mặc định là jackets)
   const [activeTab, setActiveTab] = useState<'jackets' | 'pants' | 'shirts'>('jackets');
@@ -67,8 +67,8 @@ export default function AllProducts() {
                   className={`
                     px-6 py-3 font-bold text-lg rounded-t-lg transition-all capitalize
                     ${activeTab === tab
-                      ? 'bg-primary text-white shadow-lg translate-y-[2px]'
-                      : 'bg-white text-primary hover:bg-gray-100'}
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md translate-y-[2px]'
+                      : 'bg-transparent text-gray-500 hover:text-purple-600 hover:bg-purple-50'}
                   `}
                 >
                   {tab}
@@ -88,6 +88,14 @@ export default function AllProducts() {
                     {/* Ảnh nhỏ bên trái */}
                     <div className="w-24 h-24 flex-shrink-0 relative rounded-lg overflow-hidden">
                       <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-black/0 hover:bg-black/30 transition-colors flex items-center justify-center gap-2 opacity-0 hover:opacity-100">
+                        <button
+                          onClick={() => openProductDetail(product)}
+                          className="bg-white text-gray-800 px-2 py-1 rounded-lg text-sm flex items-center gap-1"
+                        >
+                          <i className="fas fa-eye"></i>View
+                        </button>
+                      </div>
                     </div>
 
                     {/* Thông tin ở giữa */}
@@ -108,20 +116,23 @@ export default function AllProducts() {
 
                       <div className="flex justify-between items-end mt-1">
                         <div>
-                          <span className="text-accent font-bold text-xl mr-2">{product.price.toLocaleString()}₫</span>
-                          <del className="text-gray-400 text-sm">{originalPrice.toLocaleString()}₫</del>
+                          <span className="text-accent font-bold text-xl mr-2">{product.price.toLocaleString('vi-VN')}₫</span>
+                          <del className="text-gray-400 text-sm">{originalPrice.toLocaleString('vi-VN')}₫</del>
                         </div>
 
                         {/* Nút hành động */}
                         <div className="flex gap-2">
                           <button
                             onClick={() => addToCart(product)}
-                            className="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors flex items-center gap-2"
+                            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg font-bold text-sm transition-all shadow-sm hover:shadow flex items-center gap-2"
                           >
                             <i className="fas fa-cart-plus"></i> Add
                           </button>
-                          <button className="border border-gray-300 hover:border-primary hover:text-primary text-gray-600 px-3 py-2 rounded-lg text-sm transition-all hidden sm:block">
-                            Details
+                          <button
+                            onClick={() => openProductDetail(product)}
+                            className="btn btn-outline text-white border-white hover:bg-white/20"
+                          >
+                            <i className="fas fa-eye"></i>View
                           </button>
                         </div>
                       </div>

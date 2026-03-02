@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useStore } from '@/context/store_context';
-import { products } from '@/constants/products';
+
+import Image from 'next/image';
+import { useStore } from '@/src/context/store_context';
+import { products } from '@/src/constants/products';
 
 export default function BestSelling() {
   const { openProductDetail, addToCart } = useStore();
@@ -42,6 +44,8 @@ export default function BestSelling() {
 
   return (
     <section className="section bg-gradient-to-r from-purple-50 to-pink-50">
+      <div className="relative p-[3px] rounded-3xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 shadow-2xl">
+        <div className="bg-white rounded-[21px] p-8 min-h-[500px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-12">
@@ -146,7 +150,7 @@ export default function BestSelling() {
                 })}
               </div>
             </div>
-
+         
             {/* Next Button */}
             <button
               onClick={goToNext}
@@ -171,6 +175,8 @@ export default function BestSelling() {
             ))}
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </section>
   );

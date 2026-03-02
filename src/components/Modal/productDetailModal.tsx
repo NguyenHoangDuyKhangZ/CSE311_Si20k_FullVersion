@@ -28,14 +28,7 @@ export default function ProductDetailModal() {
         className="modal-content max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
-        <button
-          onClick={closeProductDetail}
-          className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl transition-colors z-10"
-        >
-          <i className="fas fa-times"></i>
-        </button>
-
+       
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
           {/* Product Image */}
           <div className="flex items-center justify-center bg-gray-100 rounded-xl overflow-hidden">
@@ -47,8 +40,15 @@ export default function ProductDetailModal() {
           </div>
 
           {/* Product Info */}
-          <div className="flex flex-col justify-between">
-            <div>
+          <div className="flex flex-col justify-between relative">
+             {/* Close Button */}
+        <button
+              onClick={closeProductDetail}
+              className="absolute -top-0 right-0 text-gray-400 hover:text-red-500 text-2xl transition-colors z-10"
+            >
+              <i className="fas fa-times"></i>
+            </button>
+            <div className="pr-8">
               <h2 className="text-3xl font-bold text-gray-800 mb-2">
                 {selectedProduct.name}
               </h2>
@@ -108,12 +108,6 @@ export default function ProductDetailModal() {
                       {selectedProduct.sold}
                     </p>
                     <p>Sold</p>
-                  </div>
-                  <div>
-                    <p className="font-bold text-indigo-600 flex items-center gap-1">
-                      <i className="fas fa-star text-yellow-400"></i>4.8
-                    </p>
-                    <p>Rating</p>
                   </div>
                 </div>
               )}

@@ -33,17 +33,21 @@ export default function Header() {
             <nav className="hidden md:flex items-center gap-1">
               <NavLink href="/">Home</NavLink>
               <div className="relative group">
-                <button
-                  onClick={() => openCategoryModal('jackets')}
-                  className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
-                >
+                <Link
+      href="/#all-products"
+      className="inline-block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors font-medium"
+    >
+      Products
+    </Link>
                   Products
-                </button>
+                
                 <div className="absolute left-0 mt-0 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                   <button
                     onClick={() => {
-                      <NavLink href="all-products"></NavLink>
+                      openCategoryModal('jackets');
+                      setShowMenu(false);
                     }}
+                    
                     className="block w-full text-left px-6 py-3 hover:bg-gray-50 first:rounded-t-xl"
                   >
                     Jackets

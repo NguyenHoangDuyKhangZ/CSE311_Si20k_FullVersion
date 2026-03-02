@@ -1,9 +1,11 @@
 'use client';
 
-import { useStore } from '@/context/store_context';
-import { products } from '@/constants/products';
-import { useState } from 'react';
 
+import { useState } from 'react';
+import Image from 'next/image';
+import { useStore } from '@/src/context/store_context';
+import { Product } from '@/src/types';
+import { products } from '@/src/constants/products';
 export default function AllProducts() {
   const { openProductDetail, addToCart, openCategoryModal } = useStore();
   const [selectedCat, setSelectedCat] = useState<string | null>(null);

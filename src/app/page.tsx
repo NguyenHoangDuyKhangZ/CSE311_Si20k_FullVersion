@@ -1,6 +1,6 @@
 import AboutUs from "../components/Home/aboutUs";
 import AllProducts from "../components/Home/allProducts";
-import BestSelling from "../components/Home/bestSelling";
+import BestSelling from "../components/Home/bestSelling2";
 import Contact from "../components/Home/contact";
 import FloatingCart from "../components/Home/floatingCart";
 import Hero from "../components/Home/hero";
