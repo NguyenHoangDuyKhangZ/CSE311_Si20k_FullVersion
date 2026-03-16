@@ -2,7 +2,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { Product, CartItem, User, NotificationType, Voucher } from '@/types/index';
+import { Product, CartItem, User, NotificationType, Voucher } from '@/src/types/index';
 
 interface StoreContextType {
   // Notification
@@ -17,6 +17,11 @@ interface StoreContextType {
   updateUserProfile: (user: User) => void;
   authModalOpen: boolean;
   setAuthModalOpen: (open: boolean) => void;
+
+  // User List Management (for Admin)
+  userList: User[];
+  toggleLockUser: (email: string) => void;
+  createNewUser: (userData: Omit<User, 'id' | 'createdAt'>) => void;
 
   // Cart
   cart: CartItem[];
@@ -45,9 +50,23 @@ interface StoreContextType {
   openProductDetail: (product: Product) => void;
   closeProductDetail: () => void;
 
+  // Delete Product Modal
+  deleteProductModalOpen: boolean;
+  setDeleteProductModalOpen: (open: boolean) => void;
+  selectedProductToDelete: Product | null;
+  setSelectedProductToDelete: (product: Product | null) => void;
+  deleteProductWithReason: (productId: number, reason: string, warningMessage: string) => void;
+
   // Dark Mode
   darkMode: boolean;
   toggleDarkMode: () => void;
+
+  // Admin Product Management
+  adminProducts: Product[];
+  addProduct: (product: Product) => void;
+  updateProduct: (id: number, product: Partial<Product>) => void;
+  deleteProduct: (id: number) => void;
+  updateProductStock: (id: number, newStock: number) => void;
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -64,6 +83,12 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const [productDetailModalOpen, setProductDetailModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [darkMode, setDarkMode] = useState(false);
+  const [adminProducts, setAdminProducts] = useState<Product[]>([]);
+  
+  // New states for role-based features
+  const [userList, setUserList] = useState<User[]>([]);
+  const [deleteProductModalOpen, setDeleteProductModalOpen] = useState(false);
+  const [selectedProductToDelete, setSelectedProductToDelete] = useState<Product | null>(null);
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -110,12 +135,94 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     } catch (e) {
       console.error('Error loading dark mode:', e);
     }
+
+    // Load admin products
+    try {
+      const savedAdminProducts = localStorage.getItem('si20k_adminProducts');
+      if (savedAdminProducts && savedAdminProducts !== 'undefined') {
+        setAdminProducts(JSON.parse(savedAdminProducts));
+      }
+    } catch (e) {
+      console.error('Error loading admin products:', e);
+      localStorage.removeItem('si20k_adminProducts');
+    }
+
+    // Load user list
+    try {
+      const savedUserList = localStorage.getItem('si20k_userList');
+      if (savedUserList && savedUserList !== 'undefined') {
+        setUserList(JSON.parse(savedUserList));
+      } else {
+        // Initialize with mock data if no saved list
+        const mockUsers: User[] = [
+          {
+            id: '1',
+            name: 'Root Admin',
+            email: 'admin@si20k.com',
+            phone: '0123456789',
+            points: 0,
+            role: 'admin',
+            password: '123',
+            isLocked: false,
+            createdAt: new Date().toISOString(),
+          },
+          {
+            id: '2',
+            name: 'Seller Account',
+            email: 'seller@si20k.com',
+            phone: '0987654321',
+            points: 100,
+            role: 'seller',
+            password: '123',
+            isLocked: false,
+            createdAt: new Date().toISOString(),
+          },
+          {
+            id: '3',
+            name: 'John Customer',
+            email: 'john@example.com',
+            phone: '0999111222',
+            points: 50,
+            role: 'guest',
+            password: '123',
+            isLocked: false,
+            createdAt: new Date().toISOString(),
+          },
+          {
+            id: '4',
+            name: 'Jane Seller',
+            email: 'jane@example.com',
+            phone: '0988222333',
+            points: 200,
+            role: 'seller',
+            password: '123',
+            isLocked: false,
+            createdAt: new Date().toISOString(),
+          },
+        ];
+        setUserList(mockUsers);
+        localStorage.setItem('si20k_userList', JSON.stringify(mockUsers));
+      }
+    } catch (e) {
+      console.error('Error loading user list:', e);
+      localStorage.removeItem('si20k_userList');
+    }
   }, []);
 
   // Save cart on change
   useEffect(() => {
     localStorage.setItem('si20k_cart', JSON.stringify(cart));
   }, [cart]);
+
+  // Save admin products on change
+  useEffect(() => {
+    localStorage.setItem('si20k_adminProducts', JSON.stringify(adminProducts));
+  }, [adminProducts]);
+
+  // Save user list on change
+  useEffect(() => {
+    localStorage.setItem('si20k_userList', JSON.stringify(userList));
+  }, [userList]);
 
   // Show notification with auto-hide
   const showNotification = useCallback((message: string, type: 'success' | 'error' | 'info' | 'warning' = 'info', duration = 3000) => {
@@ -254,15 +361,94 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
   const closeProductDetail = () => setProductDetailModalOpen(false);
 
+  // Admin Product Management
+  const addProduct = (product: Product) => {
+    const newProduct = {
+      ...product,
+      id: adminProducts.length > 0 ? Math.max(...adminProducts.map(p => p.id)) + 1 : 1,
+      stock: product.stock || 0,
+      sold: product.sold || 0,
+    };
+    setAdminProducts((prev) => [...prev, newProduct]);
+    showNotification(`Product "${newProduct.name}" added successfully!`, 'success');
+  };
+
+  const updateProduct = (id: number, productData: Partial<Product>) => {
+    setAdminProducts((prev) =>
+      prev.map((product) =>
+        product.id === id ? { ...product, ...productData } : product
+      )
+    );
+    showNotification('Product updated successfully!', 'success');
+  };
+
+  const deleteProduct = (id: number) => {
+    const product = adminProducts.find(p => p.id === id);
+    setAdminProducts((prev) => prev.filter((product) => product.id !== id));
+    showNotification(`Product "${product?.name}" deleted successfully!`, 'success');
+  };
+
+  const updateProductStock = (id: number, newStock: number) => {
+    setAdminProducts((prev) =>
+      prev.map((product) =>
+        product.id === id ? { ...product, stock: newStock } : product
+      )
+    );
+  };
+
+  // User Management Functions
+  const toggleLockUser = (email: string) => {
+    setUserList((prev) =>
+      prev.map((user) =>
+        user.email === email ? { ...user, isLocked: !user.isLocked } : user
+      )
+    );
+    const user = userList.find(u => u.email === email);
+    const newStatus = user?.isLocked ? 'unlocked' : 'locked';
+    showNotification(`User ${email} has been ${newStatus}!`, 'success');
+  };
+
+  const createNewUser = (userData: Omit<User, 'id' | 'createdAt'>) => {
+    const newUser: User = {
+      ...userData,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+    };
+    setUserList((prev) => [...prev, newUser]);
+    showNotification(`User account "${userData.email}" created successfully!`, 'success');
+  };
+
+  // Delete Product with Reason
+  const deleteProductWithReason = (productId: number, reason: string, warningMessage: string) => {
+    const product = adminProducts.find(p => p.id === productId);
+    if (product) {
+      // In a real app, you would send this data to a backend API
+      console.log('Delete Product:', {
+        productId,
+        productName: product.name,
+        reason,
+        warningMessage,
+        timestamp: new Date().toISOString()
+      });
+      setAdminProducts((prev) => prev.filter((p) => p.id !== productId));
+      showNotification(`Product "${product.name}" deleted with reason: ${reason}. Warning sent to seller.`, 'success');
+    }
+    setDeleteProductModalOpen(false);
+    setSelectedProductToDelete(null);
+  };
+
   return (
     <StoreContext.Provider value={{
       notification, setNotification, showNotification,
       currentUser, login, logout, updateUserProfile, authModalOpen, setAuthModalOpen,
+      userList, toggleLockUser, createNewUser,
       cart, addToCart, removeFromCart, updateQuantity, clearCart, cartTotal, cartModalOpen, setCartModalOpen,
       selectedVoucher, applyVoucher, removeVoucher, calculateDiscount,
       categoryModalOpen, selectedCategory, openCategoryModal, closeCategoryModal,
       productDetailModalOpen, selectedProduct, openProductDetail, closeProductDetail,
-      darkMode, toggleDarkMode
+      deleteProductModalOpen, setDeleteProductModalOpen, selectedProductToDelete, setSelectedProductToDelete, deleteProductWithReason,
+      darkMode, toggleDarkMode,
+      adminProducts, addProduct, updateProduct, deleteProduct, updateProductStock
     }}>
       {children}
     </StoreContext.Provider>

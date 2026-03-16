@@ -24,7 +24,7 @@ export default function AuthModal() {
         name: 'Guest User',
         email: 'guest@si20k.com',
         points: 1500,
-        role: 'customer',
+        role: 'guest',
       });
       setFormData({ email: '', password: '', name: '', phone: '' });
       showNotification('Login successful!', 'success');
@@ -40,7 +40,19 @@ export default function AuthModal() {
       setFormData({ email: '', password: '', name: '', phone: '' });
       showNotification('Login successful!', 'success');
       setAuthModalOpen(false);
-    } else {
+    } 
+    else if (formData.email === 'seller@si20k.com' && formData.password === '123') {
+      login({
+        id: '2',
+        name: 'Seller',
+        email: 'seller@si20k.com',
+        points: 9999,
+        role: 'seller',
+      });
+      setFormData({ email: '', password: '', name: '', phone: '' });
+      showNotification('Login successful!', 'success');
+      setAuthModalOpen(false);
+    }else {
       showNotification('Wrong email or password. Try: guest@si20k.com / 123', 'error');
     }
   };
@@ -58,7 +70,7 @@ export default function AuthModal() {
       name: formData.name,
       email: formData.email,
       points: 0,
-      role: 'customer',
+      role: 'guest',
     });
     showNotification('Registration successful!', 'success');
     setFormData({ email: '', password: '', name: '', phone: '' });

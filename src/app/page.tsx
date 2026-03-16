@@ -5,6 +5,7 @@ import Contact from "../components/Home/contact";
 import FloatingCart from "../components/Home/floatingCart";
 import Hero from "../components/Home/hero";
 import SuperSale from "../components/Home/superSale";
+import DeleteProductModalWrapper from "../components/Modal/deleteProductModalWrapper";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Contact />
         <FloatingCart />
       </main>
+      <DeleteProductModalWrapper />
     </div>
   );
 }

@@ -3,8 +3,6 @@
 import { products } from "@/src/constants/products";
 import { useStore } from "@/src/context/store_context";
 
-
-
 export default function CategoryModal() {
   const {
     categoryModalOpen,
@@ -16,6 +14,9 @@ export default function CategoryModal() {
 
   if (!categoryModalOpen || !selectedCategory) return null;
 
+  // SỬA Ở ĐÂY: Gọi thêm các hàm xử lý Modal Xóa từ store
+  const { currentUser, setSelectedProductToDelete, setDeleteProductModalOpen } = useStore();
+  
   const categoryTitleMap: Record<string, string> = {
     jackets: 'Jackets',
     pants: 'Pants',
@@ -90,15 +91,31 @@ export default function CategoryModal() {
                       )}
 
                     {/* Quick Add Button */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        addToCart(product);
-                      }}
-                      className="absolute bottom-3 left-1/2 transform -translate-x-1/2 btn btn-secondary btn-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1"
-                    >
-                      <i className="fas fa-shopping-cart"></i>Add
-                    </button>
+                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart(product);
+                        }}
+                        className="btn btn-secondary btn-sm flex items-center justify-center gap-1"
+                      >
+                        <i className="fas fa-shopping-cart"></i>Thêm
+                      </button>
+                      
+                      {/* SỬA Ở ĐÂY: Xóa ngoặc dư và thêm e.stopPropagation() */}
+                      {currentUser?.role === 'admin' && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation(); 
+                            setSelectedProductToDelete(product);
+                            setDeleteProductModalOpen(true);
+                          }}
+                          className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-red-500 flex items-center justify-center gap-1"
+                        >
+                          <i className="fas fa-trash"></i>
+                        </button>
+                      )}
+                    </div>
                   </div>
 
                   {/* Product Info */}

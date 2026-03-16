@@ -7,7 +7,7 @@ import { useStore } from '@/src/context/store_context';
 import { products } from '@/src/constants/products';
 
 export default function BestSelling() {
-  const { openProductDetail, addToCart } = useStore();
+  const { openProductDetail, addToCart, currentUser, setSelectedProductToDelete, setDeleteProductModalOpen } = useStore();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerSlide, setItemsPerSlide] = useState(4);
 
@@ -117,6 +117,18 @@ export default function BestSelling() {
                           >
                             <i className="fas fa-shopping-cart"></i>Add
                           </button>
+                          {currentUser?.role === 'admin' && (
+                            <button
+                              onClick={() => {
+                                setSelectedProductToDelete(product);
+                                setDeleteProductModalOpen(true);
+                              }}
+                              className="btn bg-red-500 hover:bg-red-600 text-white border-0 flex items-center justify-center gap-1"
+                              title="Delete product (Admin only)"
+                            >
+                              <i className="fas fa-trash"></i>
+                            </button>
+                          )}
                         </div>
                       </div>
 

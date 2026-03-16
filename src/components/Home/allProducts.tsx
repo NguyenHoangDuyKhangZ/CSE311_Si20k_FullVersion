@@ -34,7 +34,7 @@ const categoryImages: Record<string, string> = {
 };
 
 export default function AllProducts() {
-  const { openProductDetail,showNotification, addToCart: addToCartAction } = useStore();
+  const { openProductDetail, showNotification, addToCart: addToCartAction, currentUser, setSelectedProductToDelete, setDeleteProductModalOpen } = useStore();
 
   // State quản lý Tab đang chọn (mặc định là jackets)
   const [activeTab, setActiveTab] = useState<'jackets' | 'pants' | 'shirts'>('jackets');
@@ -134,6 +134,18 @@ export default function AllProducts() {
                           >
                             <i className="fas fa-eye"></i>View
                           </button>
+                          {currentUser?.role === 'admin' && (
+                            <button
+                              onClick={() => {
+                                setSelectedProductToDelete(product);
+                                setDeleteProductModalOpen(true);
+                              }}
+                              className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg font-bold text-sm transition-all shadow-sm hover:shadow flex items-center gap-2"
+                              title="Delete product (Admin only)"
+                            >
+                              <i className="fas fa-trash"></i>
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>

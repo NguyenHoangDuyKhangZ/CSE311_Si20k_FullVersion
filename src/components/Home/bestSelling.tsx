@@ -14,7 +14,7 @@ const bestSellingProducts = [
 ];
 
 export default function BestSelling() {
-  const { showNotification, addToCart: addToCartAction } = useStore(); // Hàm thêm vào giỏ hàng
+  const { showNotification, addToCart: addToCartAction, currentUser, setSelectedProductToDelete, setDeleteProductModalOpen } = useStore(); // Hàm thêm vào giỏ hàng
   const [currentIndex, setCurrentIndex] = useState(0); // Slide hiện tại
   const [itemsPerSlide, setItemsPerSlide] = useState(4); // Mặc định 4 sp/slide
 
@@ -126,6 +126,18 @@ export default function BestSelling() {
                             <button className="px-3 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all text-sm">
                               Details
                             </button>
+                            {currentUser?.role === 'admin' && (
+                              <button
+                                onClick={() => {
+                                  setSelectedProductToDelete(product);
+                                  setDeleteProductModalOpen(true);
+                                }}
+                                className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all text-sm flex items-center gap-1"
+                                title="Delete product (Admin only)"
+                              >
+                                <i className="fas fa-trash"></i>
+                              </button>
+                            )}
                           </div>
                         </div>
                       </div>

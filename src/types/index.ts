@@ -21,9 +21,11 @@ export interface User {
   phone?: string;
   address?: string;
   points: number;
-  role: 'guest' | 'customer' | 'admin';
+  role: 'guest' | 'seller' | 'admin';
   avatar?: string;
   createdAt?: string;
+  isLocked?: boolean;
+  password?: string;
 }
 
 export interface Order {

@@ -4,7 +4,14 @@ import { products } from "@/src/constants/products";
 import { useStore } from "@/src/context/store_context";
 
 export default function SuperSale() {
-  const { openProductDetail, addToCart } = useStore();
+  // SỬA Ở ĐÂY: Lấy thêm currentUser, setSelectedProductToDelete, setDeleteProductModalOpen từ store
+  const { 
+    openProductDetail, 
+    addToCart, 
+    currentUser, 
+    setSelectedProductToDelete, 
+    setDeleteProductModalOpen 
+  } = useStore();
 
   // Lấy 6 sản phẩm đầu tiên (siêu sale)
   const saleProducts = products.slice(0, 6);
@@ -14,7 +21,6 @@ export default function SuperSale() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-12">
-
           <h2 className="section-title flex items-center justify-center gap-2">
             <img src="../images/fire.gif" alt="Fire" className="w-10 h-10 rounded-xl shadow-lg" /> Super Sale Items
             <img src="../images/fire.gif" alt="Fire" className="w-10 h-10 rounded-xl shadow-lg" />
@@ -68,6 +74,20 @@ export default function SuperSale() {
                     >
                       <i className="fas fa-shopping-cart"></i>Add
                     </button>
+                    
+                    {/* SỬA Ở ĐÂY: Xóa ngoặc dư và kiểm tra quyền admin */}
+                    {currentUser?.role === 'admin' && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedProductToDelete(product);
+                          setDeleteProductModalOpen(true);
+                        }}
+                        className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-red-500 flex items-center justify-center gap-1"
+                      >
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    )}
                   </div>
                 </div>
 
