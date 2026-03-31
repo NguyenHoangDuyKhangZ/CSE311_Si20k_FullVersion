@@ -423,3 +423,4 @@ C:\Users\ACER\Desktop\CSE311_Si20k_FullVersion\backend\Si20k_Backend\obj\Debug\n
 C:\Users\ACER\Desktop\CSE311_Si20k_FullVersion\backend\Si20k_Backend\obj\Debug\net8.0\Si20k_Backend.pdb
 C:\Users\ACER\Desktop\CSE311_Si20k_FullVersion\backend\Si20k_Backend\obj\Debug\net8.0\Si20k_Backend.genruntimeconfig.cache
 C:\Users\ACER\Desktop\CSE311_Si20k_FullVersion\backend\Si20k_Backend\obj\Debug\net8.0\ref\Si20k_Backend.dll
+C:\Users\ACER\Desktop\CSE311_Si20k_FullVersion\backend\Si20k_Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

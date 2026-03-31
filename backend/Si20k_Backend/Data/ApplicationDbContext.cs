@@ -13,6 +13,8 @@ namespace Si20k_Backend.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -73,6 +75,47 @@ namespace Si20k_Backend.Data
                 .WithMany()
                 .HasForeignKey(c => c.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // ===== Order & OrderDetail relationships =====
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.User)
+                .WithMany()
+                .HasForeignKey(o => o.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(d => d.Order)
+                .WithMany(o => o.OrderDetails)
+                .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(d => d.Product)
+                .WithMany()
+                .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Decimal precision for Order
+            modelBuilder.Entity<Order>()
+                .Property(o => o.TotalAmount)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.DiscountAmount)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.FinalAmount)
+                .HasColumnType("decimal(18,2)");
+
+            // Decimal precision for OrderDetail
+            modelBuilder.Entity<OrderDetail>()
+                .Property(d => d.UnitPrice)
+                .HasColumnType("decimal(18,2)");
+
+            // Ignore computed property (EF Core can't map it)
+            modelBuilder.Entity<OrderDetail>()
+                .Ignore(d => d.SubTotal);
 
             // ===== SEED: Categories =====
             var shirtsCategoryId   = new Guid("ecd905d9-4030-4440-8a39-40f2257cf10a");

@@ -69,26 +69,54 @@ namespace Si20k_Backend.Controllers
             return Ok("Product created successfully.");
         }
 
-        [Authorize(Policy ="OnlySeller")]
+        [Authorize(Policy = "AdminOrSeller")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] UpdateProductDto productUpdateDto)
         {
+            var role = User.Claims
+                .FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;
+
+            // Seller chỉ được sửa sản phẩm của mình
+            if (role == "Seller")
+            {
+                var existingProduct = await _productService.GetByIdAsync(id);
+                if (existingProduct == null)
+                    return NotFound($"Product with ID {id} not found.");
+
+                var userIdString = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+                if (!Guid.TryParse(userIdString, out Guid sellerId) || existingProduct.SellerId != sellerId)
+                    return Forbid(); // Không phải sản phẩm của seller này
+            }
+
             var result = await _productService.UpdateAsync(id, productUpdateDto);
             if (result == false)
-            {
                 return BadRequest($"Failed to update product with ID {id}.");
-            }
+
             return Ok("Product updated successfully.");
         }
-        [Authorize(Policy = "OnlySeller")]
+        [Authorize(Policy = "AdminOrSeller")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
+            var role = User.Claims
+                .FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;
+
+            // Seller chỉ được xóa sản phẩm của mình
+            if (role == "Seller")
+            {
+                var existingProduct = await _productService.GetByIdAsync(id);
+                if (existingProduct == null)
+                    return NotFound($"Product with ID {id} not found.");
+
+                var userIdString = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+                if (!Guid.TryParse(userIdString, out Guid sellerId) || existingProduct.SellerId != sellerId)
+                    return Forbid();
+            }
+
             var result = await _productService.DeleteAsync(id);
             if (result == false)
-            {
                 return BadRequest($"Failed to delete product with ID {id}.");
-            }
+
             return Ok("Product deleted successfully.");
         }
     }

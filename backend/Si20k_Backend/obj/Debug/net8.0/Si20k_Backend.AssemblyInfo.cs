@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Si20k_Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6807db37d4e55f36a1cc8a80616b27e26316565")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ff27c9eddd84d1a328b7dd0b1e7d3aee486d574")]
 [assembly: System.Reflection.AssemblyProductAttribute("Si20k_Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Si20k_Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -74,10 +74,11 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("OnlyAdmin", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("NormalUser", policy => policy.RequireRole("Buyer", "Seller"));
-    options.AddPolicy("OnlyBuyer", policy => policy.RequireRole("Buyer"));
-    options.AddPolicy("OnlySeller", policy => policy.RequireRole("Seller"));
+    options.AddPolicy("OnlyAdmin",      policy => policy.RequireRole("Admin"));
+    options.AddPolicy("NormalUser",     policy => policy.RequireRole("Buyer", "Seller"));
+    options.AddPolicy("OnlyBuyer",      policy => policy.RequireRole("Buyer"));
+    options.AddPolicy("OnlySeller",     policy => policy.RequireRole("Seller"));
+    options.AddPolicy("AdminOrSeller",  policy => policy.RequireRole("Admin", "Seller"));
 });
 
 // ===== ADD CORS CONFIGURATION =====
@@ -103,6 +104,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IVoucherRepository, VoucherRepository>();
 builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -110,6 +112,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IVoucherService, VoucherService>();
 builder.Services.AddScoped<ICartItemService, CartItemService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -131,7 +134,7 @@ else
 
 // ===== USE CORS (phải đặt trước UseAuthorization) =====
 app.UseCors("AllowNextJs");
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -69,16 +69,12 @@ export default function ProfilePage() {
               <h1 className="text-2xl sm:text-3xl font-bold break-words">{currentUser.name}</h1>
               <p className="text-indigo-100 text-sm sm:text-base break-all">{currentUser.email}</p>
               <div className="flex flex-wrap gap-2 mt-2">
-                <span className="px-2 sm:px-3 py-1 bg-white/20 rounded-full text-xs sm:text-sm flex items-center gap-1 whitespace-nowrap">
-                  <i className="fas fa-gem"></i>
-                  {currentUser.points || 0} Points
-                </span>
                 <span
                   className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm capitalize whitespace-nowrap font-semibold ${currentUser.role === 'admin'
-                      ? 'bg-purple-600/30'
-                      : currentUser.role === 'seller'
-                        ? 'bg-orange-600/30'
-                        : 'bg-green-600/30'
+                    ? 'bg-purple-600/30'
+                    : currentUser.role === 'seller'
+                      ? 'bg-orange-600/30'
+                      : 'bg-green-600/30'
                     }`}
                 >
                   {currentUser.isLocked ? '🔒 Locked' : `✅ ${currentUser.role}`}
@@ -101,8 +97,8 @@ export default function ProfilePage() {
                   <button
                     onClick={() => setActiveTab('dashboard')}
                     className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${activeTab === 'dashboard'
-                        ? 'bg-indigo-600 text-white'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                      ? 'bg-indigo-600 text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
                       }`}
                   >
                     <i className="fas fa-chart-line mr-1"></i>Dashboard
@@ -112,8 +108,8 @@ export default function ProfilePage() {
                   <button
                     onClick={() => setActiveTab('dashboard')}
                     className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${activeTab === 'dashboard'
-                        ? 'bg-indigo-600 text-white'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                      ? 'bg-indigo-600 text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
                       }`}
                   >
                     <i className="fas fa-store mr-1"></i>Store
@@ -122,8 +118,8 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('info')}
                   className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${activeTab === 'info'
-                      ? 'bg-indigo-600 text-white'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                    ? 'bg-indigo-600 text-white'
+                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
                     }`}
                 >
                   <i className="fas fa-address-card mr-1"></i>Info
@@ -131,8 +127,8 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('settings')}
                   className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${activeTab === 'settings'
-                      ? 'bg-indigo-600 text-white'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                    ? 'bg-indigo-600 text-white'
+                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
                     }`}
                 >
                   <i className="fas fa-cog mr-1"></i>Settings
@@ -147,8 +143,8 @@ export default function ProfilePage() {
                   <button
                     onClick={() => setActiveTab('dashboard')}
                     className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'dashboard'
-                        ? 'bg-indigo-600 text-white'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
+                      ? 'bg-indigo-600 text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
                       }`}
                   >
                     <i className="fas fa-chart-line mr-2"></i>
@@ -157,8 +153,8 @@ export default function ProfilePage() {
                   <button
                     onClick={() => setActiveTab('users')}
                     className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'users'
-                        ? 'bg-indigo-600 text-white'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
+                      ? 'bg-indigo-600 text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
                       }`}
                   >
                     <i className="fas fa-users mr-2"></i>
@@ -167,8 +163,8 @@ export default function ProfilePage() {
                   <button
                     onClick={() => setActiveTab('products')}
                     className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'products'
-                        ? 'bg-indigo-600 text-white'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
+                      ? 'bg-indigo-600 text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
                       }`}
                   >
                     <i className="fas fa-box mr-2"></i>
@@ -180,8 +176,8 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('dashboard')}
                   className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'dashboard'
-                      ? 'bg-indigo-600 text-white'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
+                    ? 'bg-indigo-600 text-white'
+                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
                     }`}
                 >
                   <i className="fas fa-store mr-2"></i>
@@ -191,8 +187,8 @@ export default function ProfilePage() {
               <button
                 onClick={() => setActiveTab('info')}
                 className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'info'
-                    ? 'bg-indigo-600 text-white'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
+                  ? 'bg-indigo-600 text-white'
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
                   }`}
               >
                 <i className="fas fa-address-card mr-2"></i>
@@ -201,8 +197,8 @@ export default function ProfilePage() {
               <button
                 onClick={() => setActiveTab('settings')}
                 className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'settings'
-                    ? 'bg-indigo-600 text-white'
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
+                  ? 'bg-indigo-600 text-white'
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
                   }`}
               >
                 <i className="fas fa-cog mr-2"></i>

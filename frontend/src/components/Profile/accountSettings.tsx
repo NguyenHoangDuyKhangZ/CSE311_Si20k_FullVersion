@@ -105,31 +105,9 @@ export default function AccountSettings() {
             </div>
           )}
         </div>
-
-        {/* Dark Mode Toggle */}
-        <div className="flex items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300">
-              <i className="fas fa-moon text-lg"></i>
-            </div>
-            <div>
-              <h4 className="font-bold text-gray-800 dark:text-white">Dark Mode</h4>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Adjust the appearance to reduce eye strain</p>
-            </div>
-          </div>
-
-          <label className="relative inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              className="sr-only peer"
-              checked={darkMode}
-              onChange={toggleDarkMode}
-            />
-            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-600/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
-          </label>
-        </div>
-
       </div>
+
     </div>
+
   );
 }

@@ -2,15 +2,16 @@
 
 import { useStore } from '@/src/context/store_context';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Hero() {
   const [searchQuery, setSearchQuery] = useState('');
   const { openCategoryModal } = useStore();
+  const router = useRouter();
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      // TODO: integrate search into product list filter
-      console.log('Searching for:', searchQuery);
+      router.push(`/?search=${encodeURIComponent(searchQuery)}#all-products`);
     }
   };
 
