@@ -1,0 +1,177 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\model\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\model\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\model\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\model\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\model\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\model\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\migrations\\20260331014235_initialdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\migrations\\20260331014235_initialdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\documents\\doc\\zalo received files\\cse311\\backend\\si20k_backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CategoryService.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Services\\CategoryService.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Services\\CategoryService.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Services\\CategoryService.cs",
+              "RelativeToolTip": "Si20k_Backend\\Services\\CategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T04:06:33.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CategoriesController.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Controllers\\CategoriesController.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Controllers\\CategoriesController.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Controllers\\CategoriesController.cs",
+              "RelativeToolTip": "Si20k_Backend\\Controllers\\CategoriesController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T03:56:20.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Services\\AuthService.cs",
+              "RelativeToolTip": "Si20k_Backend\\Services\\AuthService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAmwBIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T03:47:51.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Repositories\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "Si20k_Backend\\Repositories\\ProductRepository.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T01:56:17.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Model\\Entities\\Category.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Model\\Entities\\Category.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Model\\Entities\\Category.cs",
+              "RelativeToolTip": "Si20k_Backend\\Model\\Entities\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T01:56:03.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Model\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Model\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Model\\Entities\\User.cs",
+              "RelativeToolTip": "Si20k_Backend\\Model\\Entities\\User.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T01:55:58.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Model\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Model\\Entities\\Product.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Model\\Entities\\Product.cs",
+              "RelativeToolTip": "Si20k_Backend\\Model\\Entities\\Product.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T01:55:53.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "20260331014235_InitialDB.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Migrations\\20260331014235_InitialDB.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Migrations\\20260331014235_InitialDB.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Migrations\\20260331014235_InitialDB.cs",
+              "RelativeToolTip": "Si20k_Backend\\Migrations\\20260331014235_InitialDB.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T01:55:28.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\ACER\\Documents\\doc\\Zalo Received Files\\CSE311\\backend\\Si20k_Backend\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Si20k_Backend\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAmwC8AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T01:49:15.246Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

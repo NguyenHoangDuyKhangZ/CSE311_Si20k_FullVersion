@@ -1,0 +1,6 @@
+@Si20k_Backend_HostAddress = http://localhost:5187
+
+GET {{Si20k_Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
