@@ -51,7 +51,7 @@ namespace Si20k_Backend.Controllers
             return Ok(products);
         }
 
-        [Authorize(Policy = "OnlySeller")]
+        [Authorize(Policy = "AdminOrSeller")]
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto productCreateDto)
         {
@@ -76,7 +76,7 @@ namespace Si20k_Backend.Controllers
             var role = User.Claims
                 .FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;
 
-            // Seller chỉ được sửa sản phẩm của mình
+           
             if (role == "Seller")
             {
                 var existingProduct = await _productService.GetByIdAsync(id);
@@ -85,7 +85,7 @@ namespace Si20k_Backend.Controllers
 
                 var userIdString = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
                 if (!Guid.TryParse(userIdString, out Guid sellerId) || existingProduct.SellerId != sellerId)
-                    return Forbid(); // Không phải sản phẩm của seller này
+                    return Forbid(); 
             }
 
             var result = await _productService.UpdateAsync(id, productUpdateDto);

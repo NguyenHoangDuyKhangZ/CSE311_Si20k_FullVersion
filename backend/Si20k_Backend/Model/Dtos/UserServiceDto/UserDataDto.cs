@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Si20k_Backend.Model.Dtos.UserServiceDto
 {
@@ -22,5 +22,6 @@ namespace Si20k_Backend.Model.Dtos.UserServiceDto
         [MaxLength(500)]
         public string? Address { get; set; }
         public string? Role { get; set; }
+        public bool IsLocked { get; set; }
     }
 }

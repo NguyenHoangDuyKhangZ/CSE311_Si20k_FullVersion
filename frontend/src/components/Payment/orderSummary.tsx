@@ -17,7 +17,7 @@ export default function OrderSummary({ cart, subtotal, discount, total }: OrderS
         <i className="fas fa-shopping-bag text-primary"></i> Order Summary
       </h3>
 
-      {/* Danh sách sản phẩm (Có cuộn nếu dài) */}
+
       <div className="max-h-[300px] overflow-y-auto pr-2 mb-6 space-y-4 scrollbar-thin">
         {cart.map((item) => (
           <div key={item.id} className="flex gap-4 items-center">
@@ -38,7 +38,7 @@ export default function OrderSummary({ cart, subtotal, discount, total }: OrderS
         ))}
       </div>
 
-      {/* Phần tính tiền */}
+
       <div className="space-y-3 pt-4 border-t border-gray-100">
         <div className="flex justify-between text-gray-600">
           <span>Subtotal</span>

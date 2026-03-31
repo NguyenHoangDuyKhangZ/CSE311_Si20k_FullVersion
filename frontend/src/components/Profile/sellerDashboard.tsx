@@ -1,18 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useStore } from '@/src/context/store_context';
 
 export default function SellerDashboard() {
-  const { adminProducts, currentUser } = useStore();
 
+  const { products: adminProducts = [], currentUser } = useStore();
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '', price: 0, originalPrice: 0, description: '', img: '', category: 'shirts', stock: 0, sold: 0
+  });
   // ─── Computed stats ───────────────────────────────────────────────────────────
   const totalProducts = adminProducts.length;
   const totalSold = adminProducts.reduce((sum, p) => sum + (p.sold ?? 0), 0);
-  const totalRevenue = adminProducts.reduce((sum, p) => sum + p.price * (p.sold ?? 0), 0);
+  const totalRevenue = adminProducts.reduce((sum, p) => sum + (p.price ?? 0) * (p.sold ?? 0), 0);
   const totalStock = adminProducts.reduce((sum, p) => sum + (p.stock ?? 0), 0);
 
-  const topProducts = [...adminProducts].sort((a, b) => (b.sold ?? 0) - (a.sold ?? 0)).slice(0, 5);
+  const topProducts = [...adminProducts]
+    .sort((a, b) => (b.sold ?? 0) - (a.sold ?? 0))
+    .slice(0, 5);
+
   const lowStockProducts = adminProducts.filter((p) => (p.stock ?? 0) < 10);
 
   return (
@@ -68,11 +76,11 @@ export default function SellerDashboard() {
                       <p className="text-sm font-semibold text-gray-800 dark:text-white truncate">{product.name}</p>
                     </div>
                     <p className="text-xs text-gray-600 dark:text-gray-400">
-                      Sold: {product.sold ?? 0} | Price: {product.price.toLocaleString('vi-VN')} VND
+                      Sold: {product.sold ?? 0} | Price: {(product.price ?? 0).toLocaleString('vi-VN')} VND
                     </p>
                   </div>
                   <p className="text-sm font-bold text-orange-600 ml-2 flex-shrink-0">
-                    {((product.sold ?? 0) * product.price).toLocaleString('vi-VN')} VND
+                    {((product.sold ?? 0) * (product.price ?? 0)).toLocaleString('vi-VN')} VND
                   </p>
                 </div>
               ))}
@@ -100,9 +108,11 @@ export default function SellerDashboard() {
                     <p className="text-sm font-semibold text-gray-800 dark:text-white truncate">{product.name}</p>
                     <p className="text-xs text-gray-600 dark:text-gray-400">Only {product.stock} items left</p>
                   </div>
-                  <button className="flex-shrink-0 ml-2 px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-xs font-semibold transition-all">
-                    Restock
-                  </button>
+                  <button onClick={() => {
+                    setEditingId(product.id);
+                    setFormData({ name: product.name, price: product.price || 0, originalPrice: product.originalPrice || 0, description: product.description || '', img: product.img || '', category: 'shirts', stock: product.stock || 0, sold: product.sold || 0 });
+                    setShowForm(true);
+                  }} className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm font-semibold transition-colors">Restock</button>
                 </div>
               ))}
             </div>
@@ -126,7 +136,7 @@ export default function SellerDashboard() {
           </div>
           <div>
             <p className="text-2xl font-bold text-orange-600">
-              {totalSold === 0 ? '0' : (totalRevenue / totalSold).toLocaleString('vi-VN')}
+              {totalSold === 0 ? '0' : Math.round(totalRevenue / totalSold).toLocaleString('vi-VN')}
             </p>
             <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Avg Price per Item Sold</p>
           </div>

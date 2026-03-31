@@ -17,7 +17,7 @@ export default function BankingInfo({ totalAmount }: BankingInfoProps) {
     content: "SI20K ORDER"
   };
 
-  // Tạo link QR Code động
+
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=Bank:MB;Account:${bankInfo.accountNumber};Amount:${totalAmount};Content:${bankInfo.content}`;
 
   const handleCopy = (text: string, label: string) => {
@@ -33,8 +33,7 @@ export default function BankingInfo({ totalAmount }: BankingInfoProps) {
 
       <div className="flex flex-col items-center mb-8">
         <div className="p-3 bg-white border-2 border-primary/20 rounded-xl shadow-inner">
-          {/* Dùng thẻ img thường cho QR code vì đây là external url động */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+
           <img src={qrUrl} alt="QR Code" className="w-48 h-48 object-contain rounded-lg" />
         </div>
         <p className="text-gray-500 text-sm mt-3 flex items-center gap-1">

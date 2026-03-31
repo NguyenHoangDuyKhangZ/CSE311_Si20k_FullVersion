@@ -48,9 +48,31 @@ export default function AuthModal() {
         return;
       }
 
+      const rawText = await response.text();
+      let token: string = '';
 
-      const token = await response.text();
+      try {
+        const parsed = JSON.parse(rawText);
 
+        if (parsed.accessToken && typeof parsed.accessToken === 'object') {
+          token = parsed.accessToken.accessToken || parsed.accessToken.AccessToken || '';
+        } else {
+          token = parsed.accessToken ?? parsed.AccessToken ?? '';
+        }
+
+      } catch {
+        token = rawText.replace(/^"|"$/g, '').trim();
+      }
+      token = token.replace(/^"|"$/g, '').trim();
+
+      if (!token || typeof token !== 'string') {
+        console.error('[Login] Bad token — raw response was:', rawText.slice(0, 200));
+        showNotification('Login failed: no token received', 'error');
+        setIsLoading(false);
+        return;
+      }
+
+      console.log('[Login] token OK, starts with:', token.slice(0, 20));
 
       try {
         const base64Url = token.split('.')[1];

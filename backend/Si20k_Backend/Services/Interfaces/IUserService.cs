@@ -1,4 +1,4 @@
-﻿using Si20k_Backend.Model.Dtos.UserServiceDto;
+using Si20k_Backend.Model.Dtos.UserServiceDto;
 
 namespace Si20k_Backend.Services.Interfaces
 {
@@ -9,5 +9,6 @@ namespace Si20k_Backend.Services.Interfaces
             Task<bool> CreateUserAsync(CreateUserDto user); //Admin Only
             Task<bool> UpdateUserAsync(Guid id, UpdateUserDto dto); 
             Task<bool> DeleteUserAsync(Guid id); //Admin Only
+            Task<bool> ToggleLockAsync(Guid id); //Admin Only
     }
 }

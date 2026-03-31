@@ -8,7 +8,7 @@ export default function AboutUs() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex flex-col md:flex-row items-center gap-12">
 
-          {/* Cột nội dung (Text) */}
+
           <div className="w-full md:w-1/2 space-y-6">
             <h5 className="text-xl font-semibold text-blue-500">Who are we?</h5>
             <h1 className="text-4xl md:text-5xl font-bold gradient-text">Si20k_Store</h1>
@@ -36,7 +36,7 @@ export default function AboutUs() {
             </div>
           </div>
 
-          {/* Cột hình ảnh */}
+
           <div className="w-full md:w-1/2 flex gap-4">
             <div className="w-1/2 transform -translate-y-6 transition-transform hover:-translate-y-8 duration-500">
               <Image

@@ -180,8 +180,8 @@ export default function CartModal() {
                           key={v.id}
                           onClick={() => handleVoucherClick(v.code)}
                           className={`p-3 rounded-lg cursor-pointer transition-all border-2 ${isSelected
-                              ? 'border-indigo-500 bg-indigo-50'
-                              : 'border-gray-200 bg-white hover:border-indigo-300'
+                            ? 'border-indigo-500 bg-indigo-50'
+                            : 'border-gray-200 bg-white hover:border-indigo-300'
                             }`}
                         >
                           <div className="font-bold text-gray-800 text-sm mb-1 flex items-center justify-between">

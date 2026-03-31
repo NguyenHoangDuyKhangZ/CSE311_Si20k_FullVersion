@@ -132,7 +132,7 @@ else
     app.UseHttpsRedirection();
 }
 
-// ===== USE CORS (phải đặt trước UseAuthorization) =====
+// ===== USE CORS =====
 app.UseCors("AllowNextJs");
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Si20k_Backend.Model.Dtos.UserServiceDto;
@@ -84,6 +84,18 @@ namespace Si20k_Backend.Controllers
                 return NotFound("User not found or delete failed.");
             }
             return Ok("User deleted successfully.");
+        }
+
+        [Authorize(Policy = "OnlyAdmin")]
+        [HttpPut("toggle-lock/{id}")]
+        public async Task<IActionResult> ToggleLock(Guid id)
+        {
+            var result = await _userService.ToggleLockAsync(id);
+            if (!result)
+            {
+                return BadRequest("Cannot toggle lock for this user.");
+            }
+            return Ok("User lock status toggled.");
         }
     }
 }

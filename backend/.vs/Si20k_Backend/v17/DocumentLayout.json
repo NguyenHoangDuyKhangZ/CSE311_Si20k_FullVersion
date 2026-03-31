@@ -3,6 +3,21 @@
   "WorkspaceRootPath": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\desktop\\cse311_si20k_fullversion\\backend\\si20k_backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\desktop\\cse311_si20k_fullversion\\backend\\si20k_backend\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ACER\\AppData\\Local\\SourceServer\\5d648f72ffca28c75a7fe9fdd2a59e361a04c17710ca05621a34b6788ae61405\\backend\\Si20k_Backend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\desktop\\cse311_si20k_fullversion\\backend\\si20k_backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\desktop\\cse311_si20k_fullversion\\backend\\si20k_backend\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\services\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -33,10 +48,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\desktop\\cse311_si20k_fullversion\\backend\\si20k_backend\\migrations\\20260331014235_initialdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\migrations\\20260331014235_initialdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|c:\\users\\acer\\desktop\\cse311_si20k_fullversion\\backend\\si20k_backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{70A674E2-0C72-4EB8-9AD0-41DDF1D62203}|Si20k_Backend\\Si20k_Backend.csproj|solutionrelative:si20k_backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +57,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +65,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\AppData\\Local\\SourceServer\\5d648f72ffca28c75a7fe9fdd2a59e361a04c17710ca05621a34b6788ae61405\\backend\\Si20k_Backend\\Program.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\SourceServer\\5d648f72ffca28c75a7fe9fdd2a59e361a04c17710ca05621a34b6788ae61405\\backend\\Si20k_Backend\\Program.cs",
+              "ToolTip": "C:\\Users\\ACER\\AppData\\Local\\SourceServer\\5d648f72ffca28c75a7fe9fdd2a59e361a04c17710ca05621a34b6788ae61405\\backend\\Si20k_Backend\\Program.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\SourceServer\\5d648f72ffca28c75a7fe9fdd2a59e361a04c17710ca05621a34b6788ae61405\\backend\\Si20k_Backend\\Program.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAArwIUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T17:32:55.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "Si20k_Backend\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAA5wDgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T17:30:49.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Program.cs",
+              "RelativeDocumentMoniker": "Si20k_Backend\\Program.cs",
+              "ToolTip": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Program.cs",
+              "RelativeToolTip": "Si20k_Backend\\Program.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAArwIYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T16:54:07.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CategoryService.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Services\\CategoryService.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Services\\CategoryService.cs",
@@ -67,7 +117,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Controllers\\CategoriesController.cs",
@@ -79,7 +129,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Services\\AuthService.cs",
@@ -91,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "ProductRepository.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Repositories\\ProductRepository.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Repositories\\ProductRepository.cs",
@@ -103,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Model\\Entities\\Category.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Model\\Entities\\Category.cs",
@@ -115,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Model\\Entities\\User.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Model\\Entities\\User.cs",
@@ -127,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Model\\Entities\\Product.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Model\\Entities\\Product.cs",
@@ -139,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "20260331014235_InitialDB.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Migrations\\20260331014235_InitialDB.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Migrations\\20260331014235_InitialDB.cs",
@@ -151,15 +201,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Si20k_Backend\\Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\ACER\\Desktop\\CSE311_Si20k_FullVersion\\backend\\Si20k_Backend\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Si20k_Backend\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAmwC8AAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAA0wDkAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T01:49:15.246Z"
+              "WhenOpened": "2026-03-31T01:49:15.246Z",
+              "EditorCaption": ""
             }
           ]
         }

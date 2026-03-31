@@ -93,3 +93,21 @@ export async function deleteProductById(id: string, token: string): Promise<void
   });
   if (!res.ok) throw new Error(`Failed to delete product: ${res.status}`);
 }
+export async function deleteProductWithReason(id: string, reason: string, token: string) {
+  const cleanToken = token.replace(/^"|"$/g, '');
+
+  const res = await fetch(`${API_BASE}/Products/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${cleanToken}`,
+      'Content-Type': 'application/json'
+    },
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(errorText || 'Failed to delete product from database');
+  }
+
+  return true;
+}

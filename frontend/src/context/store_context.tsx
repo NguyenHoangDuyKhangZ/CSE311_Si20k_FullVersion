@@ -93,7 +93,9 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     } finally { setIsLoadingProducts(false); }
   }, [showNotification]);
 
+
   const refreshVouchers = useCallback(async (token: string = '') => {
+    if (!token) return;
     setIsLoadingVouchers(true);
     try {
       const data = await fetchAllVouchers(token);
@@ -101,7 +103,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     } catch (err) { console.error(err); }
     finally { setIsLoadingVouchers(false); }
   }, []);
-
   useEffect(() => {
     try {
       const rawCart = localStorage.getItem('si20k_cart');
@@ -114,11 +115,15 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       const raw = localStorage.getItem('si20k_currentUser');
       if (raw && raw !== 'undefined') {
         const user: User = JSON.parse(raw);
+
+        if (!user.token && (user as any).accessToken) {
+          user.token = (user as any).accessToken;
+        }
+
         setCurrentUser(user);
-        restoredToken = user.token || (user as any).accessToken || '';
+        restoredToken = user.token || '';
       }
     } catch { localStorage.removeItem('si20k_currentUser'); }
-
     try {
       const rawVoucher = localStorage.getItem('si20k_voucher');
       if (rawVoucher && rawVoucher !== 'undefined') setSelectedVoucher(JSON.parse(rawVoucher));
@@ -131,12 +136,14 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => { localStorage.setItem('si20k_cart', JSON.stringify(cart)); }, [cart]);
 
   const login = (user: User) => {
+    if (!user.token && (user as any).accessToken) {
+      user.token = (user as any).accessToken;
+    }
     setCurrentUser(user);
     localStorage.setItem('si20k_currentUser', JSON.stringify(user));
     setAuthModalOpen(false);
     showNotification(`Welcome ${user.name}!`, 'success');
-    const tokenToUse = user.token || (user as any).accessToken;
-    if (tokenToUse) refreshVouchers(tokenToUse);
+    if (user.token) refreshVouchers(user.token);
   };
 
   const logout = () => {

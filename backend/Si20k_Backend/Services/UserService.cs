@@ -1,4 +1,4 @@
-﻿using Si20k_Backend.Model.Dtos.UserServiceDto;
+using Si20k_Backend.Model.Dtos.UserServiceDto;
 using Si20k_Backend.Model.Entities;
 using Si20k_Backend.Repositories.Interfaces;
 using Si20k_Backend.Services.Interfaces;
@@ -56,7 +56,8 @@ namespace Si20k_Backend.Services
                 Username = u.Username,
                 PhoneNumber = u.PhoneNumber,
                 Address = u.Address,
-                Role = u.Role
+                Role = u.Role,
+                IsLocked = u.IsLocked
             }).ToList();
         }
         public async Task<UserDataDto?> GetUserByIdAsync(Guid id)
@@ -96,6 +97,17 @@ namespace Si20k_Backend.Services
 
             await _userRepo.Update(user);
 
+            return true;
+        }
+
+        public async Task<bool> ToggleLockAsync(Guid id)
+        {
+            var user = await _userRepo.GetByIdAsync(id);
+            if (user == null) return false;
+            if (user.Role == "Admin") return false; // cannot lock admin
+
+            user.IsLocked = !user.IsLocked;
+            await _userRepo.Update(user);
             return true;
         }
     }

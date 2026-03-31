@@ -6,12 +6,12 @@ import { useStore } from '@/src/context/store_context';
 const CATEGORY_IMAGES: Record<string, string> = {
   all: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800',
   jackets: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800',
-  pants: 'https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?q=80&w=800',
+  pants: 'https://images.unsplash.com/photo-1493357335960-4583bfa6f8d9?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   shirts: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800',
 };
 
 export default function AllProducts() {
-  // Lấy toàn bộ state và action cần thiết từ global store (dữ liệu thật từ DB)
+
   const {
     products,
     isLoadingProducts,
@@ -25,8 +25,7 @@ export default function AllProducts() {
   const [activeTab, setActiveTab] = useState<string>('all');
   const searchParams = useSearchParams();
   const searchKeyword = searchParams.get('search') || '';
-  // Logic lọc dữ liệu thật
-  // Tùy vào cách bạn map dữ liệu ở store, trường category có thể là product.category hoặc product.categoryName
+
   const filtered = products.filter((p) => {
 
     const pCategory = (p.category || '').toLowerCase();
@@ -51,7 +50,7 @@ export default function AllProducts() {
 
         <div className="flex flex-col lg:flex-row gap-8">
 
-          {/* CỘT TRÁI: Tabs & Danh sách sản phẩm */}
+
           <div className="lg:w-2/3 w-full">
 
             {/* Tabs Navigation */}
@@ -72,7 +71,7 @@ export default function AllProducts() {
               ))}
             </div>
 
-            {/* Trạng thái Loading hoặc Trống */}
+
             {isLoadingProducts ? (
               <div className="flex justify-center py-16">
                 <div className="animate-spin rounded-full h-12 w-12 border-4 border-indigo-600 border-t-transparent" />

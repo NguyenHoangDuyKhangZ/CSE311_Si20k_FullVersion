@@ -21,7 +21,7 @@ export default function Contact() {
           <h2 className="text-4xl font-bold text-white">Get in touch through these channels</h2>
         </div>
 
-        {/* Info Grid (4 cột) */}
+        {/* Info Grid  */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {[
             { icon: 'fa-map-marker-alt', title: 'Address', text: 'HL601 Road, Binh Duong' },

@@ -958,6 +958,29 @@
         }
       }
     },
+    "/api/Users/toggle-lock/{id}": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Voucher": {
       "get": {
         "tags": [
@@ -1826,6 +1849,9 @@
           "role": {
             "type": "string",
             "nullable": true
+          },
+          "isLocked": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

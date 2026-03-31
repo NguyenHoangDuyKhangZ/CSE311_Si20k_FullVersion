@@ -1,4 +1,4 @@
-﻿using Microsoft.Identity.Client;
+using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -34,6 +34,8 @@ namespace Si20k_Backend.Model.Entities
         public string RefreshToken { get; set; } = string.Empty;
         public DateTime? TokenCreated { get; set; }
         public DateTime? TokenExpires { get; set; }
+
+        public bool IsLocked { get; set; } = false;
 
         [JsonIgnore]
         public ICollection<Product>? Products { get; set; } = new List<Product>();

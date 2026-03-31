@@ -34,10 +34,10 @@ export default function AdminProductManager() {
         quantity: formData.stock,
         soldNumber: formData.sold
       };
-
+      const cleanToken = currentUser?.token?.replace(/^"|"$/g, '') || '';
       const res = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${currentUser?.token}` },
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${cleanToken}` },
         body: JSON.stringify(payload)
       });
 
