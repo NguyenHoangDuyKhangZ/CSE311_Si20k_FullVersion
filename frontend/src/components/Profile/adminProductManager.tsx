@@ -13,9 +13,9 @@ const BLANK_FORM: Partial<Product> = {
 export default function AdminProductManager() {
   const { adminProducts, addProduct, updateProduct, deleteProduct, updateProductStock } = useStore();
 
-  const [showForm, setShowForm]       = useState(false);
-  const [editingId, setEditingId]     = useState<string | null>(null);
-  const [formData, setFormData]       = useState<Partial<Product>>(BLANK_FORM);
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [formData, setFormData] = useState<Partial<Product>>(BLANK_FORM);
 
   // Submit: create or update
   const handleSubmit = () => {

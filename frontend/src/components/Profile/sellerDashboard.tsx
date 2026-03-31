@@ -8,11 +8,11 @@ export default function SellerDashboard() {
 
   // ─── Computed stats ───────────────────────────────────────────────────────────
   const totalProducts = adminProducts.length;
-  const totalSold     = adminProducts.reduce((sum, p) => sum + (p.sold ?? 0), 0);
-  const totalRevenue  = adminProducts.reduce((sum, p) => sum + p.price * (p.sold ?? 0), 0);
-  const totalStock    = adminProducts.reduce((sum, p) => sum + (p.stock ?? 0), 0);
+  const totalSold = adminProducts.reduce((sum, p) => sum + (p.sold ?? 0), 0);
+  const totalRevenue = adminProducts.reduce((sum, p) => sum + p.price * (p.sold ?? 0), 0);
+  const totalStock = adminProducts.reduce((sum, p) => sum + (p.stock ?? 0), 0);
 
-  const topProducts      = [...adminProducts].sort((a, b) => (b.sold ?? 0) - (a.sold ?? 0)).slice(0, 5);
+  const topProducts = [...adminProducts].sort((a, b) => (b.sold ?? 0) - (a.sold ?? 0)).slice(0, 5);
   const lowStockProducts = adminProducts.filter((p) => (p.stock ?? 0) < 10);
 
   return (
@@ -149,7 +149,7 @@ function StatCard({
   const colorMap: Record<string, string> = {
     indigo: 'from-indigo-50 to-indigo-100 border-indigo-200 dark:from-indigo-900/20 dark:to-indigo-800/20 dark:border-indigo-700',
     orange: 'from-orange-50 to-orange-100 border-orange-200 dark:from-orange-900/20 dark:to-orange-800/20 dark:border-orange-700',
-    green:  'from-green-50  to-green-100  border-green-200  dark:from-green-900/20  dark:to-green-800/20  dark:border-green-700',
+    green: 'from-green-50  to-green-100  border-green-200  dark:from-green-900/20  dark:to-green-800/20  dark:border-green-700',
     purple: 'from-purple-50 to-purple-100 border-purple-200 dark:from-purple-900/20 dark:to-purple-800/20 dark:border-purple-700',
   };
   const iconBg: Record<string, string> = {

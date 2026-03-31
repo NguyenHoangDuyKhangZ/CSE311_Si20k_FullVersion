@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import { Product, CartItem, User, NotificationType, Voucher } from '@/src/types/index';
 import { fetchProducts } from '@/src/services/productService';
-import { vouchers as VOUCHERS } from '@/src/constants/products';
+import { fetchAllVouchers, fetchVoucherByCode } from '@/src/services/voucherService';
 
 // ─── Context Shape ─────────────────────────────────────────────────────────────
 interface StoreContextType {
@@ -42,9 +42,11 @@ interface StoreContextType {
   cartModalOpen: boolean;
   setCartModalOpen: (open: boolean) => void;
 
-  // Voucher
+  // Vouchers
+  vouchers: Voucher[];
+  isLoadingVouchers: boolean;
   selectedVoucher: Voucher | null;
-  applyVoucher: (code: string) => void;
+  applyVoucher: (code: string) => Promise<void>;
   removeVoucher: () => void;
   calculateDiscount: (total: number) => number;
 
@@ -93,6 +95,8 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartModalOpen, setCartModalOpen] = useState(false);
+  const [vouchers, setVouchers] = useState<Voucher[]>([]);
+  const [isLoadingVouchers, setIsLoadingVouchers] = useState(false);
   const [selectedVoucher, setSelectedVoucher] = useState<Voucher | null>(null);
 
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
@@ -133,6 +137,19 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [showNotification]);
 
+  // ─── Fetch Vouchers from API ─────────────────────────────────────────────────
+  const refreshVouchers = useCallback(async (token: string) => {
+    setIsLoadingVouchers(true);
+    try {
+      const data = await fetchAllVouchers(token);
+      setVouchers(data);
+    } catch (err) {
+      console.error('Failed to load vouchers:', err);
+    } finally {
+      setIsLoadingVouchers(false);
+    }
+  }, []);
+
   // ─── Bootstrap on mount ──────────────────────────────────────────────────────
   useEffect(() => {
     // Restore cart
@@ -142,9 +159,14 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     } catch { localStorage.removeItem('si20k_cart'); }
 
     // Restore user session
+    let restoredToken: string | undefined;
     try {
       const raw = localStorage.getItem('si20k_currentUser');
-      if (raw && raw !== 'undefined') setCurrentUser(JSON.parse(raw));
+      if (raw && raw !== 'undefined') {
+        const user: User = JSON.parse(raw);
+        setCurrentUser(user);
+        restoredToken = user.token;
+      }
     } catch { localStorage.removeItem('si20k_currentUser'); }
 
     // Restore voucher
@@ -170,10 +192,10 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         setUserList(JSON.parse(raw));
       } else {
         const seed: User[] = [
-          { id: '1', name: 'Root Admin',     email: 'admin@si20k.com',   phone: '0123456789', points: 0,   role: 'admin',  password: '123', isLocked: false, createdAt: new Date().toISOString() },
-          { id: '2', name: 'Seller Account', email: 'seller@si20k.com',  phone: '0987654321', points: 100, role: 'seller', password: '123', isLocked: false, createdAt: new Date().toISOString() },
-          { id: '3', name: 'John Customer',  email: 'john@example.com',  phone: '0999111222', points: 50,  role: 'guest',  password: '123', isLocked: false, createdAt: new Date().toISOString() },
-          { id: '4', name: 'Jane Seller',    email: 'jane@example.com',  phone: '0988222333', points: 200, role: 'seller', password: '123', isLocked: false, createdAt: new Date().toISOString() },
+          { id: '1', name: 'Root Admin', email: 'admin@si20k.com', phone: '0123456789', points: 0, role: 'admin', password: '123', isLocked: false, createdAt: new Date().toISOString() },
+          { id: '2', name: 'Seller Account', email: 'seller@si20k.com', phone: '0987654321', points: 100, role: 'seller', password: '123', isLocked: false, createdAt: new Date().toISOString() },
+          { id: '3', name: 'John Customer', email: 'john@example.com', phone: '0999111222', points: 50, role: 'guest', password: '123', isLocked: false, createdAt: new Date().toISOString() },
+          { id: '4', name: 'Jane Seller', email: 'jane@example.com', phone: '0988222333', points: 200, role: 'seller', password: '123', isLocked: false, createdAt: new Date().toISOString() },
         ];
         setUserList(seed);
         localStorage.setItem('si20k_userList', JSON.stringify(seed));
@@ -182,7 +204,10 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
     // Load products from API
     refreshProducts();
-  }, [refreshProducts]);
+
+    // Load vouchers from API (needs token — skip if not logged in)
+    if (restoredToken) refreshVouchers(restoredToken);
+  }, [refreshProducts, refreshVouchers]);
 
   // Persist cart changes
   useEffect(() => { localStorage.setItem('si20k_cart', JSON.stringify(cart)); }, [cart]);
@@ -196,6 +221,8 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('si20k_currentUser', JSON.stringify(user));
     setAuthModalOpen(false);
     showNotification(`Welcome ${user.name}!`, 'success');
+    // Load vouchers now that we have a token
+    if (user.token) refreshVouchers(user.token);
   };
 
   const logout = () => {
@@ -243,16 +270,25 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   // ─── Voucher ─────────────────────────────────────────────────────────────────
-  const applyVoucher = (code: string) => {
-    const voucher = VOUCHERS.find((v) => v.code === code);
-    if (!voucher) { showNotification('Voucher code does not exist!', 'error'); return; }
-    if (voucher.minOrder && cartTotal < voucher.minOrder) {
-      showNotification(`Applies to orders from ${voucher.minOrder.toLocaleString('vi-VN')} VND`, 'warning');
+  const applyVoucher = async (code: string): Promise<void> => {
+    if (!currentUser?.token) {
+      showNotification('Please login to use voucher codes!', 'warning');
       return;
     }
-    setSelectedVoucher(voucher);
-    localStorage.setItem('si20k_voucher', JSON.stringify(voucher));
-    showNotification(`Applied code: ${code}`, 'success');
+    try {
+      const voucher = await fetchVoucherByCode(code, currentUser.token);
+      if (!voucher) { showNotification('Voucher code does not exist!', 'error'); return; }
+      if (!voucher.isActive) { showNotification('This voucher is no longer active.', 'error'); return; }
+      if (cartTotal < voucher.minOrder) {
+        showNotification(`Applies to orders from ${voucher.minOrder.toLocaleString('vi-VN')} ₫`, 'warning');
+        return;
+      }
+      setSelectedVoucher(voucher);
+      localStorage.setItem('si20k_voucher', JSON.stringify(voucher));
+      showNotification(`Applied code: ${code}`, 'success');
+    } catch {
+      showNotification('Could not verify voucher. Please try again.', 'error');
+    }
   };
 
   const removeVoucher = () => {
@@ -263,11 +299,16 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
   const calculateDiscount = (total: number): number => {
     if (!selectedVoucher) return 0;
-    if (selectedVoucher.discountType === 'percent') {
-      const discount = (total * selectedVoucher.discount) / 100;
+    if (selectedVoucher.discountType === 'Percent') {
+      const discount = (total * selectedVoucher.discountAmount) / 100;
       return selectedVoucher.maxDiscount ? Math.min(discount, selectedVoucher.maxDiscount) : discount;
     }
-    return selectedVoucher.discount;
+    if (selectedVoucher.discountType === 'PercentUpTo') {
+      const discount = (total * selectedVoucher.discountAmount) / 100;
+      return selectedVoucher.maxDiscount ? Math.min(discount, selectedVoucher.maxDiscount) : discount;
+    }
+    // Fixed
+    return selectedVoucher.discountAmount;
   };
 
   // ─── Dark Mode ───────────────────────────────────────────────────────────────
@@ -348,7 +389,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       userList, toggleLockUser, createNewUser,
       products, isLoadingProducts, refreshProducts,
       cart, addToCart, removeFromCart, updateQuantity, clearCart, cartTotal, cartModalOpen, setCartModalOpen,
-      selectedVoucher, applyVoucher, removeVoucher, calculateDiscount,
+      vouchers, isLoadingVouchers, selectedVoucher, applyVoucher, removeVoucher, calculateDiscount,
       categoryModalOpen, selectedCategory, openCategoryModal, closeCategoryModal,
       productDetailModalOpen, selectedProduct, openProductDetail, closeProductDetail,
       deleteProductModalOpen, setDeleteProductModalOpen, selectedProductToDelete, setSelectedProductToDelete, deleteProductWithReason,

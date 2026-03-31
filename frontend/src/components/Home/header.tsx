@@ -9,7 +9,7 @@ export default function Header() {
     currentUser, setAuthModalOpen, cart, setCartModalOpen, logout,
     openCategoryModal
   } = useStore();
-  
+
   // Mobile menu & products dropdown state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          
+
           {/* 1. Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <img src="../images/logo.png" alt="Logo" className="w-10 h-10 rounded-xl shadow-lg" />
@@ -35,7 +35,7 @@ export default function Header() {
           {/* 2. Navigation Menu (Desktop) */}
           <nav className="hidden md:flex items-center gap-1">
             <NavLink href="/">Home</NavLink>
-            
+
             {/* Dropdown Products */}
             <div className="relative group">
               <Link
@@ -66,14 +66,14 @@ export default function Header() {
                 </button>
               </div>
             </div>
-            
+
             <NavLink href="/#about">About Us</NavLink>
             <NavLink href="/#contact">Contact</NavLink>
           </nav>
 
           {/* 3. Right Section - Cart, User & Hamburger */}
           <div className="flex items-center gap-2 md:gap-4">
-            
+
             {/* Cart Button */}
             <button
               onClick={() => setCartModalOpen(true)}
@@ -92,15 +92,12 @@ export default function Header() {
               {currentUser ? (
                 <div className="relative group">
                   <button className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                    <span className="px-3 py-1 bg-gray-100 rounded-full text-sm flex items-center gap-1 font-medium text-gray-700">
-                      <img src="../images/diamond.png" alt="Points" className="w-4 h-4" />
-                      {currentUser.points}
-                    </span>
+
                     <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-200">
-                      <img 
-                        src={currentUser.role === 'admin' ? "../images/admin.png" : "../images/user.png"} 
-                        alt="avatar" 
-                        className="w-full h-full object-cover" 
+                      <img
+                        src={currentUser.role === 'admin' ? "../images/admin.png" : "../images/user.png"}
+                        alt="avatar"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <span className="text-sm font-medium text-gray-700">
@@ -146,15 +143,14 @@ export default function Header() {
 
       {/* Mobile navigation menu (animated slide-down) */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${
-          isMobileMenuOpen ? 'max-h-[500px] border-t border-gray-100' : 'max-h-0'
-        }`}
+        className={`md:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${isMobileMenuOpen ? 'max-h-[500px] border-t border-gray-100' : 'max-h-0'
+          }`}
       >
         <nav className="px-6 py-4 flex flex-col gap-4 font-medium text-gray-700">
           <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-indigo-600">
             Home
           </Link>
-          
+
           {/* Products dropdown (mobile) */}
           <div>
             <button
@@ -199,10 +195,10 @@ export default function Header() {
             {currentUser ? (
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <img 
-                    src={currentUser.role === 'admin' ? "../images/admin.png" : "../images/user.png"} 
-                    alt="avatar" 
-                    className="w-10 h-10 rounded-full object-cover border border-gray-200" 
+                  <img
+                    src={currentUser.role === 'admin' ? "../images/admin.png" : "../images/user.png"}
+                    alt="avatar"
+                    className="w-10 h-10 rounded-full object-cover border border-gray-200"
                   />
                   <div>
                     <p className="font-bold text-gray-800">{currentUser.name}</p>
@@ -211,8 +207,8 @@ export default function Header() {
                     </p>
                   </div>
                 </div>
-                <Link 
-                  href="/profile" 
+                <Link
+                  href="/profile"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="w-full text-center bg-gray-50 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-100"
                 >

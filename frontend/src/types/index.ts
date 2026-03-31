@@ -51,14 +51,14 @@ export interface Order {
 }
 
 export interface Voucher {
-  id: number;
-  code: string;
-  discountType: 'percent' | 'fixed';
-  discount: number;
-  minOrder?: number;
-  maxDiscount?: number;
+  id: string;                               // Guid from backend
+  code: string;                             // maps to VoucherCode
+  discountType: 'Percent' | 'Fixed' | 'PercentUpTo';
+  discountAmount: number;                   // maps to DiscountAmount
+  minOrder: number;                         // maps to MinOrder
+  maxDiscount?: number | null;              // maps to MaxDiscount
   description: string;
-  expiryDate?: string;
+  isActive: boolean;
 }
 
 export interface NotificationType {

@@ -52,7 +52,7 @@ export default function BankingInfo({ totalAmount }: BankingInfoProps) {
           <span className="text-gray-500 font-medium">Account No.</span>
           <div className="flex items-center gap-2">
             <span className="font-bold text-gray-800">{bankInfo.accountNumber}</span>
-            <button 
+            <button
               onClick={() => handleCopy(bankInfo.accountNumber, "số tài khoản")}
               className="text-primary hover:bg-primary/10 p-1.5 rounded transition-colors"
               title="Copy"
@@ -73,7 +73,7 @@ export default function BankingInfo({ totalAmount }: BankingInfoProps) {
             <span className="font-bold text-accent bg-accent/10 px-2 py-1 rounded text-sm">
               {bankInfo.content}
             </span>
-            <button 
+            <button
               onClick={() => handleCopy(bankInfo.content, "nội dung chuyển khoản")}
               className="text-primary hover:bg-primary/10 p-1.5 rounded transition-colors"
             >

@@ -4,8 +4,8 @@ import { useStore } from '@/src/context/store_context';
 
 const CATEGORY_TITLE: Record<string, string> = {
   jackets: 'Jackets',
-  pants:   'Pants',
-  shirts:  'Shirts',
+  pants: 'Pants',
+  shirts: 'Shirts',
 };
 
 export default function CategoryModal() {

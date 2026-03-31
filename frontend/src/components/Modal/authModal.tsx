@@ -40,7 +40,7 @@ export default function AuthModal() {
       setFormData({ email: '', password: '', name: '', phone: '' });
       showNotification('Login successful!', 'success');
       setAuthModalOpen(false);
-    } 
+    }
     else if (formData.email === 'seller@si20k.com' && formData.password === '123') {
       login({
         id: '2',
@@ -52,7 +52,7 @@ export default function AuthModal() {
       setFormData({ email: '', password: '', name: '', phone: '' });
       showNotification('Login successful!', 'success');
       setAuthModalOpen(false);
-    }else {
+    } else {
       showNotification('Wrong email or password. Try: guest@si20k.com / 123', 'error');
     }
   };
@@ -99,8 +99,8 @@ export default function AuthModal() {
         <div className="flex border-b border-gray-200 mb-6 mt-4">
           <button
             className={`flex-1 pb-3 text-lg font-bold transition-all ${activeTab === 'login'
-                ? 'text-indigo-600 border-b-2 border-indigo-600'
-                : 'text-gray-400'
+              ? 'text-indigo-600 border-b-2 border-indigo-600'
+              : 'text-gray-400'
               }`}
             onClick={() => setActiveTab('login')}
           >
@@ -108,8 +108,8 @@ export default function AuthModal() {
           </button>
           <button
             className={`flex-1 pb-3 text-lg font-bold transition-all ${activeTab === 'register'
-                ? 'text-indigo-600 border-b-2 border-indigo-600'
-                : 'text-gray-400'
+              ? 'text-indigo-600 border-b-2 border-indigo-600'
+              : 'text-gray-400'
               }`}
             onClick={() => setActiveTab('register')}
           >

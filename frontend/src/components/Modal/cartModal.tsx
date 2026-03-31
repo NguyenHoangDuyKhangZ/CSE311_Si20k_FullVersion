@@ -4,12 +4,7 @@ import { useStore } from '@/src/context/store_context';
 import Link from 'next/link';
 import { useState } from 'react';
 
-// List of available vouchers to display
-const AVAILABLE_VOUCHERS = [
-  { code: 'WELCOME10', discountText: '10%', description: '10% off for first order' },
-  { code: 'S50', discountText: '50,000 VND', description: '50,000 VND off orders from 1,000,000 VND' },
-  { code: 'SALE20', discountText: '20%', description: '20% off up to 500,000 VND' }
-];
+
 
 export default function CartModal() {
   const {
@@ -19,6 +14,8 @@ export default function CartModal() {
     removeFromCart,
     updateQuantity,
     cartTotal,
+    vouchers,
+    isLoadingVouchers,
     selectedVoucher,
     applyVoucher,
     calculateDiscount,
@@ -33,17 +30,17 @@ export default function CartModal() {
   const finalTotal = cartTotal - discount;
 
   // Handle when Apply button is clicked (manual input)
-  const handleApplyVoucher = () => {
+  const handleApplyVoucher = async () => {
     if (!voucherCode.trim()) {
       showNotification('Please enter discount code', 'warning');
       return;
     }
-    applyVoucher(voucherCode);
+    await applyVoucher(voucherCode.toUpperCase());
   };
 
   // Handle when clicking directly on voucher card
-  const handleVoucherClick = (code: string) => {
-    applyVoucher(code);
+  const handleVoucherClick = async (code: string) => {
+    await applyVoucher(code);
     setVoucherCode(code); // Auto-fill input for visual feedback
   };
 
@@ -146,7 +143,7 @@ export default function CartModal() {
                 <h3 className="font-bold text-gray-800 text-base flex items-center gap-2 mb-3">
                   <i className="fas fa-ticket-alt text-red-500"></i> Voucher & Discount Codes
                 </h3>
-                
+
                 {/* Input nhập mã */}
                 <div className="flex gap-2 mb-3">
                   <input
@@ -164,29 +161,44 @@ export default function CartModal() {
                   </button>
                 </div>
 
-                {/* Danh sách Voucher để click */}
+                {/* Voucher list - dynamic from API */}
                 <div className="space-y-2 mb-4">
                   <p className="text-xs text-gray-600 font-medium">Available vouchers:</p>
-                  {AVAILABLE_VOUCHERS.map((v) => {
-                    const isSelected = selectedVoucher?.code === v.code;
-                    return (
-                      <div
-                        key={v.code}
-                        onClick={() => handleVoucherClick(v.code)}
-                        className={`p-3 rounded-lg cursor-pointer transition-all border-2 ${
-                          isSelected
-                            ? 'border-indigo-500 bg-indigo-50'
-                            : 'border-gray-200 bg-white hover:border-indigo-300'
-                        }`}
-                      >
-                        <div className="font-bold text-gray-800 text-sm mb-1 flex items-center justify-between">
-                          <span>{v.code} - {v.discountText}</span>
-                          {isSelected && <i className="fas fa-check-circle text-indigo-500 text-sm"></i>}
+                  {isLoadingVouchers ? (
+                    <p className="text-xs text-gray-400 text-center py-2">Loading vouchers...</p>
+                  ) : vouchers.length === 0 ? (
+                    <p className="text-xs text-gray-400 text-center py-2">No vouchers available</p>
+                  ) : (
+                    vouchers.map((v) => {
+                      const isSelected = selectedVoucher?.code === v.code;
+                      const discountText =
+                        v.discountType === 'Fixed'
+                          ? `${v.discountAmount.toLocaleString('vi-VN')} ₫`
+                          : `${v.discountAmount}%`;
+                      return (
+                        <div
+                          key={v.id}
+                          onClick={() => handleVoucherClick(v.code)}
+                          className={`p-3 rounded-lg cursor-pointer transition-all border-2 ${
+                            isSelected
+                              ? 'border-indigo-500 bg-indigo-50'
+                              : 'border-gray-200 bg-white hover:border-indigo-300'
+                          }`}
+                        >
+                          <div className="font-bold text-gray-800 text-sm mb-1 flex items-center justify-between">
+                            <span>{v.code} - {discountText}</span>
+                            {isSelected && <i className="fas fa-check-circle text-indigo-500 text-sm"></i>}
+                          </div>
+                          <div className="text-xs text-gray-500">{v.description}</div>
+                          {v.minOrder > 0 && (
+                            <div className="text-xs text-orange-500 mt-0.5">
+                              Min order: {v.minOrder.toLocaleString('vi-VN')} ₫
+                            </div>
+                          )}
                         </div>
-                        <div className="text-xs text-gray-500">{v.description}</div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })
+                  )}
                 </div>
 
                 {/* Total Calculation */}

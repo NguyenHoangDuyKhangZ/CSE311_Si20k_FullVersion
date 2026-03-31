@@ -71,7 +71,7 @@ export default function BestSelling() {
                 {/* Prev button */}
                 <button
                   onClick={prevSlide}
-                  className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
+                  className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white-50 text-white shadow-lg hover:scale-110 transition-transform hover:bg-gradient-to-r from-purple-600 to-pink-500 flex items-center justify-center"
                 >
                   <i className="fas fa-chevron-left" />
                 </button>
@@ -168,7 +168,7 @@ export default function BestSelling() {
                 {/* Next button */}
                 <button
                   onClick={nextSlide}
-                  className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
+                  className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white-50 text-white shadow-lg hover:scale-110 transition-transform hover:bg-gradient-to-r from-purple-600 to-pink-500 flex items-center justify-center"
                 >
                   <i className="fas fa-chevron-right" />
                 </button>
@@ -182,9 +182,8 @@ export default function BestSelling() {
                   <button
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
-                    className={`h-3 rounded-full transition-all ${
-                      currentIndex === idx ? 'bg-purple-600 w-8' : 'bg-gray-300 w-3'
-                    }`}
+                    className={`h-3 rounded-full transition-all ${currentIndex === idx ? 'bg-purple-600 w-8' : 'bg-gray-300 w-3'
+                      }`}
                   />
                 ))}
               </div>

@@ -111,7 +111,7 @@ export default function SuperSale() {
                     </div>
 
                     <div className="flex items-center justify-between text-xs text-gray-500">
-                      <span><i className="fas fa-star text-yellow-400" /> 4.8</span>
+
                       {!!product.sold && (
                         <span><i className="fas fa-fire text-red-500" /> Sold: {product.sold}</span>
                       )}

@@ -65,8 +65,8 @@ export default function AccountSettings() {
             <button
               onClick={() => setIsEditing(!isEditing)}
               className={`px-4 py-2 rounded-lg font-semibold transition-all whitespace-nowrap ${isEditing
-                  ? 'text-red-500 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30'
-                  : 'text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30'
+                ? 'text-red-500 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/30'
+                : 'text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/30'
                 }`}
             >
               <i className={`fas ${isEditing ? 'fa-times' : 'fa-edit'} mr-2`}></i>

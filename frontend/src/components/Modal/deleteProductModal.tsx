@@ -44,7 +44,7 @@ const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ isOpen, onClose
         selectedReason,
         warningMessage || 'No reminder provided'
       );
-      
+
       // Reset form
       setSelectedReason('');
       setWarningMessage('');
@@ -72,80 +72,79 @@ const DeleteProductModal: React.FC<DeleteProductModalProps> = ({ isOpen, onClose
         <div className="p-6 flex-1 overflow-y-auto">
           {/* Header */}
           <div className="mb-6 flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className="rounded-full bg-red-100 p-3">
-              <i className="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+            <div className="flex items-center gap-3">
+              <div className="rounded-full bg-red-100 p-3">
+                <i className="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-800">Confirm Product Deletion</h2>
+                <p className="text-sm text-gray-500">Only admins can perform this action</p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-lg font-bold text-gray-800">Confirm Product Deletion</h2>
-              <p className="text-sm text-gray-500">Only admins can perform this action</p>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-600 text-xl"
+              aria-label="Close modal"
+            >
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
+
+          {/* Product Info */}
+          <div className="mb-6 rounded-lg bg-gray-50 p-4">
+            <p className="text-sm font-semibold text-gray-700">Product to delete:</p>
+            <p className="mt-2 text-base font-bold text-gray-900">{selectedProductToDelete.name}</p>
+            <p className="mt-1 text-sm text-gray-600">ID: {selectedProductToDelete.id}</p>
+            <p className="mt-1 text-sm text-gray-600">
+              Price: {selectedProductToDelete.price.toLocaleString('vi-VN')} VND
+            </p>
+          </div>
+
+          {/* Deletion Reason Selection */}
+          <div className="mb-6">
+            <label className="mb-3 block text-sm font-semibold text-gray-700">
+              Select deletion reason <span className="text-red-500">*</span>
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {deletionReasons.map((reason) => (
+                <button
+                  key={reason.id}
+                  onClick={() => setSelectedReason(reason.id)}
+                  className={`rounded-lg border-2 p-3 text-left transition-all duration-200 ${selectedReason === reason.id
+                      ? 'border-red-500 bg-red-50'
+                      : 'border-gray-300 bg-white hover:border-red-300'
+                    }`}
+                >
+                  <span className="text-lg">{reason.emoji}</span>
+                  <p className="mt-1 text-xs font-medium text-gray-800">{reason.label}</p>
+                </button>
+              ))}
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-xl"
-            aria-label="Close modal"
-          >
-            <i className="fas fa-times"></i>
-          </button>
-        </div>
 
-        {/* Product Info */}
-        <div className="mb-6 rounded-lg bg-gray-50 p-4">
-          <p className="text-sm font-semibold text-gray-700">Product to delete:</p>
-          <p className="mt-2 text-base font-bold text-gray-900">{selectedProductToDelete.name}</p>
-          <p className="mt-1 text-sm text-gray-600">ID: {selectedProductToDelete.id}</p>
-          <p className="mt-1 text-sm text-gray-600">
-            Price: {selectedProductToDelete.price.toLocaleString('vi-VN')} VND
-          </p>
-        </div>
-
-        {/* Deletion Reason Selection */}
-        <div className="mb-6">
-          <label className="mb-3 block text-sm font-semibold text-gray-700">
-            Select deletion reason <span className="text-red-500">*</span>
-          </label>
-          <div className="grid grid-cols-2 gap-2">
-            {deletionReasons.map((reason) => (
-              <button
-                key={reason.id}
-                onClick={() => setSelectedReason(reason.id)}
-                className={`rounded-lg border-2 p-3 text-left transition-all duration-200 ${
-                  selectedReason === reason.id
-                    ? 'border-red-500 bg-red-50'
-                    : 'border-gray-300 bg-white hover:border-red-300'
-                }`}
-              >
-                <span className="text-lg">{reason.emoji}</span>
-                <p className="mt-1 text-xs font-medium text-gray-800">{reason.label}</p>
-              </button>
-            ))}
+          {/* Warning Message */}
+          <div className="mb-6">
+            <label className="mb-2 block text-sm font-semibold text-gray-700">
+              Reminder for Seller (optional)
+            </label>
+            <textarea
+              value={warningMessage}
+              onChange={(e) => setWarningMessage(e.target.value)}
+              placeholder="Enter detailed message to send to the seller..."
+              rows={4}
+              className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200"
+            />
+            <p className="mt-2 text-xs text-gray-500">
+              This reminder will be sent to the Seller so they understand why the product was deleted
+            </p>
           </div>
-        </div>
 
-        {/* Warning Message */}
-        <div className="mb-6">
-          <label className="mb-2 block text-sm font-semibold text-gray-700">
-            Reminder for Seller (optional)
-          </label>
-          <textarea
-            value={warningMessage}
-            onChange={(e) => setWarningMessage(e.target.value)}
-            placeholder="Enter detailed message to send to the seller..."
-            rows={4}
-            className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200"
-          />
-          <p className="mt-2 text-xs text-gray-500">
-            This reminder will be sent to the Seller so they understand why the product was deleted
-          </p>
-        </div>
-
-        {/* Warning Box */}
-        <div className="mb-6 rounded-lg border-l-4 border-red-500 bg-red-50 p-4">
-          <p className="text-sm text-red-800">
-            <strong>⚠️ Warning:</strong> This action cannot be undone. The product will be permanently deleted from the system.
-          </p>
-        </div>
+          {/* Warning Box */}
+          <div className="mb-6 rounded-lg border-l-4 border-red-500 bg-red-50 p-4">
+            <p className="text-sm text-red-800">
+              <strong>⚠️ Warning:</strong> This action cannot be undone. The product will be permanently deleted from the system.
+            </p>
+          </div>
         </div>
 
         {/* Action Buttons */}

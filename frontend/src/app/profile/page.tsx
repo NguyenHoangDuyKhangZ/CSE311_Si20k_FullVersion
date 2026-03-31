@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useStore } from '@/src/context/store_context';
-import ProfileStats from '@/src/components/Profile/profileStats';
 import AccountSettings from '@/src/components/Profile/accountSettings';
 import AdminProductManager from '@/src/components/Profile/adminProductManager';
 import SellerDashboard from '@/src/components/Profile/sellerDashboard';
@@ -75,13 +74,12 @@ export default function ProfilePage() {
                   {currentUser.points || 0} Points
                 </span>
                 <span
-                  className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm capitalize whitespace-nowrap font-semibold ${
-                    currentUser.role === 'admin'
+                  className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm capitalize whitespace-nowrap font-semibold ${currentUser.role === 'admin'
                       ? 'bg-purple-600/30'
                       : currentUser.role === 'seller'
-                      ? 'bg-orange-600/30'
-                      : 'bg-green-600/30'
-                  }`}
+                        ? 'bg-orange-600/30'
+                        : 'bg-green-600/30'
+                    }`}
                 >
                   {currentUser.isLocked ? '🔒 Locked' : `✅ ${currentUser.role}`}
                 </span>
@@ -102,11 +100,10 @@ export default function ProfilePage() {
                 {currentUser.role === 'admin' && (
                   <button
                     onClick={() => setActiveTab('dashboard')}
-                    className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
-                      activeTab === 'dashboard'
+                    className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${activeTab === 'dashboard'
                         ? 'bg-indigo-600 text-white'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
-                    }`}
+                      }`}
                   >
                     <i className="fas fa-chart-line mr-1"></i>Dashboard
                   </button>
@@ -114,32 +111,29 @@ export default function ProfilePage() {
                 {currentUser.role === 'seller' && (
                   <button
                     onClick={() => setActiveTab('dashboard')}
-                    className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
-                      activeTab === 'dashboard'
+                    className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${activeTab === 'dashboard'
                         ? 'bg-indigo-600 text-white'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
-                    }`}
+                      }`}
                   >
                     <i className="fas fa-store mr-1"></i>Store
                   </button>
                 )}
                 <button
                   onClick={() => setActiveTab('info')}
-                  className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
-                    activeTab === 'info'
+                  className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${activeTab === 'info'
                       ? 'bg-indigo-600 text-white'
                       : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
-                  }`}
+                    }`}
                 >
                   <i className="fas fa-address-card mr-1"></i>Info
                 </button>
                 <button
                   onClick={() => setActiveTab('settings')}
-                  className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
-                    activeTab === 'settings'
+                  className={`flex-1 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${activeTab === 'settings'
                       ? 'bg-indigo-600 text-white'
                       : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
-                  }`}
+                    }`}
                 >
                   <i className="fas fa-cog mr-1"></i>Settings
                 </button>
@@ -152,33 +146,30 @@ export default function ProfilePage() {
                 <>
                   <button
                     onClick={() => setActiveTab('dashboard')}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${
-                      activeTab === 'dashboard'
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'dashboard'
                         ? 'bg-indigo-600 text-white'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
-                    }`}
+                      }`}
                   >
                     <i className="fas fa-chart-line mr-2"></i>
                     Admin Dashboard
                   </button>
                   <button
                     onClick={() => setActiveTab('users')}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${
-                      activeTab === 'users'
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'users'
                         ? 'bg-indigo-600 text-white'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
-                    }`}
+                      }`}
                   >
                     <i className="fas fa-users mr-2"></i>
                     Manage Users
                   </button>
                   <button
                     onClick={() => setActiveTab('products')}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${
-                      activeTab === 'products'
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'products'
                         ? 'bg-indigo-600 text-white'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
-                    }`}
+                      }`}
                   >
                     <i className="fas fa-box mr-2"></i>
                     Manage Products
@@ -188,11 +179,10 @@ export default function ProfilePage() {
               {currentUser.role === 'seller' && (
                 <button
                   onClick={() => setActiveTab('dashboard')}
-                  className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${
-                    activeTab === 'dashboard'
+                  className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'dashboard'
                       ? 'bg-indigo-600 text-white'
                       : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
-                  }`}
+                    }`}
                 >
                   <i className="fas fa-store mr-2"></i>
                   Store Dashboard
@@ -200,22 +190,20 @@ export default function ProfilePage() {
               )}
               <button
                 onClick={() => setActiveTab('info')}
-                className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${
-                  activeTab === 'info'
+                className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'info'
                     ? 'bg-indigo-600 text-white'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
-                }`}
+                  }`}
               >
                 <i className="fas fa-address-card mr-2"></i>
                 Personal Info
               </button>
               <button
                 onClick={() => setActiveTab('settings')}
-                className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${
-                  activeTab === 'settings'
+                className={`w-full text-left px-4 py-3 rounded-lg transition-all text-sm sm:text-base ${activeTab === 'settings'
                     ? 'bg-indigo-600 text-white'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300'
-                }`}
+                  }`}
               >
                 <i className="fas fa-cog mr-2"></i>
                 Settings
@@ -269,10 +257,7 @@ export default function ProfilePage() {
             {/* Personal Info Tab */}
             {activeTab === 'info' && (
               <>
-                {/* Statistics Section */}
-                {(currentUser.role === 'admin' || currentUser.role === 'seller') && (
-                  <ProfileStats currentUser={currentUser} />
-                )}
+
 
                 {/* Personal Info Form */}
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-md space-y-4 sm:space-y-6 transition-colors">

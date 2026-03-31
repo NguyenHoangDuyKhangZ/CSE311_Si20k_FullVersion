@@ -237,13 +237,12 @@ export default function UserManagement() {
                   </td>
                   <td className="px-4 py-3">
                     <span
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold capitalize ${
-                        user.role === 'admin'
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold capitalize ${user.role === 'admin'
                           ? 'bg-purple-100 text-purple-700'
                           : user.role === 'seller'
-                          ? 'bg-orange-100 text-orange-700'
-                          : 'bg-green-100 text-green-700'
-                      }`}
+                            ? 'bg-orange-100 text-orange-700'
+                            : 'bg-green-100 text-green-700'
+                        }`}
                     >
                       {user.role}
                     </span>
@@ -253,11 +252,10 @@ export default function UserManagement() {
                   </td>
                   <td className="px-4 py-3">
                     <span
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
-                        user.isLocked
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${user.isLocked
                           ? 'bg-red-100 text-red-700'
                           : 'bg-green-100 text-green-700'
-                      }`}
+                        }`}
                     >
                       {user.isLocked ? '🔒 Locked' : '🔓 Active'}
                     </span>
@@ -267,11 +265,10 @@ export default function UserManagement() {
                       onClick={() => {
                         toggleLockUser(user.email);
                       }}
-                      className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg font-semibold text-xs transition-all ${
-                        user.isLocked
+                      className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg font-semibold text-xs transition-all ${user.isLocked
                           ? 'bg-green-500 hover:bg-green-600 text-white'
                           : 'bg-red-500 hover:bg-red-600 text-white'
-                      }`}
+                        }`}
                       title={user.isLocked ? 'Unlock user' : 'Lock user'}
                     >
                       {user.isLocked ? (

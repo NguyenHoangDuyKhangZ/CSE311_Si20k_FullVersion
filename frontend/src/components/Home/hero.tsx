@@ -70,9 +70,9 @@ export default function Hero() {
         {/* Category quick links */}
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           {[
-            { key: 'jackets', icon: 'fa-tshirt',       label: 'Jackets' },
-            { key: 'pants',   icon: 'fa-user-tag',     label: 'Pants'   },
-            { key: 'shirts',  icon: 'fa-shopping-bag', label: 'Shirts'  },
+            { key: 'jackets', icon: 'fa-tshirt', label: 'Jackets' },
+            { key: 'pants', icon: 'fa-user-tag', label: 'Pants' },
+            { key: 'shirts', icon: 'fa-shopping-bag', label: 'Shirts' },
           ].map((cat) => (
             <button
               key={cat.key}

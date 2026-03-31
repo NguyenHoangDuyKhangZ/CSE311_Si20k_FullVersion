@@ -28,7 +28,7 @@ export default function ProductDetailModal() {
         className="modal-content max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-       
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
           {/* Product Image */}
           <div className="flex items-center justify-center bg-gray-100 rounded-xl overflow-hidden">
@@ -41,8 +41,8 @@ export default function ProductDetailModal() {
 
           {/* Product Info */}
           <div className="flex flex-col justify-between relative">
-             {/* Close Button */}
-        <button
+            {/* Close Button */}
+            <button
               onClick={closeProductDetail}
               className="absolute -top-0 right-0 text-gray-400 hover:text-red-500 text-2xl transition-colors z-10"
             >
